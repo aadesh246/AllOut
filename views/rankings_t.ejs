@@ -1,0 +1,123 @@
+<%- include("header.ejs")%>
+
+<div class="container">
+	<div class="row">
+  <div class="col-4">
+    <div class="list-group box5">
+      <a class="list-group-item list-group-item-action text-center" href="/ranking" >Tests &nbsp;
+		  <img src="https://www.rebelsport.com.au/dw/image/v2/BBRV_PRD/on/demandware.static/-/Sites-srg-internal-master-catalog/default/dwe3fa8393/images/45094401/Rebel_45094401_hi-res.jpg?sw=1000&sh=1000&sm=fit" style="height:30px;width:30px;border-radius:50px;">
+		</a>
+      <a class="list-group-item list-group-item-action text-center" href="/rankings_o">ODIs &nbsp;
+		  <img src="https://kdsport.com.au/images/detailed/0/kd-training-2p-white.jpg" style="height:30px;width:30px;border-radius:50px;">
+		</a>
+      <a class="list-group-item list-group-item-action active text-center" href="/rankings_t" >T20s &nbsp;
+		  <img src="http://www.crickettrainingballs.com.au/wp-content/uploads/2014/07/White-cricket-ball-4-piece.png" style="height:30px;width:30px;border-radius:50px;">
+		</a>
+	
+   </div>
+  </div>
+  <div class="col-8">
+	<div class="list-group list-group-horizontal box5" id="list-tab" role="tablist">
+      <a class="list-group-item list-group-item-action active text-center" id="list-bat-list" data-bs-toggle="list" href="#list-bat" role="tab" aria-controls="bat">Batsman
+		</a>
+      <a class="list-group-item list-group-item-action text-center" id="list-bowl-list" data-bs-toggle="list" href="#list-bowl" role="tab" aria-controls="bowl">Bowler
+		</a>
+      <a class="list-group-item list-group-item-action text-center" id="list-all-list" data-bs-toggle="list" href="#list-all" role="tab" aria-controls="all">All-Rounder
+		</a>
+		<a class="list-group-item list-group-item-action text-center" id="list-team-list" data-bs-toggle="list" href="#list-team" role="tab" aria-controls="team">Team
+		</a>
+    </div>
+    <div class="tab-content box4" style="margin-left:0;" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="list-bat" role="tabpanel" aria-labelledby="list-bat-list">
+		  <table class="table">
+			  <thead>
+    <tr>
+      <th scope="col">Rank</th>
+      <th scope="col">Player Name</th>
+	  <th scope="col">Country</th>
+      <th scope="col">Points</th>
+    </tr>
+  </thead>
+  <tbody>
+	  <%bats.forEach(function(bat){%>
+	  <tr>
+		  <td><%=bat.rank%></td>
+		  <td><%=bat.name%></td>
+		  <td><%=bat.country%></td>
+		  <td><%=bat.points%></td>
+	  </tr>
+	  <%})%>
+  </tbody>
+</table>
+	  </div>
+      <div class="tab-pane fade" id="list-bowl" role="tabpanel" aria-labelledby="list-bowl-list">  <table class="table">
+		  <thead>
+    <tr>
+      <th scope="col">Rank</th>
+      <th scope="col">Player Name</th>
+	  <th scope="col">Country</th>
+      <th scope="col">Points</th>
+    </tr>
+  </thead>
+  <tbody>
+	  <%bowl.forEach(function(bowl){%>
+	  <tr>
+		  <td><%=bowl.rank%></td>
+		  <td><%=bowl.name%></td>
+		  <td><%=bowl.country%></td>
+		  <td><%=bowl.points%></td>
+	  </tr>
+	  <%})%>
+  </tbody>
+</table></div>
+      <div class="tab-pane fade" id="list-all" role="tabpanel" aria-labelledby="list-all-list">  <table class="table">
+		  <thead>
+    <tr>
+      <th scope="col">Rank</th>
+      <th scope="col">Player Name</th>
+	  <th scope="col">Country</th>
+      <th scope="col">Points</th>
+    </tr>
+  </thead>
+  <tbody>
+	  <%all.forEach(function(all){%>
+	  <tr>
+		  <td><%=all.rank%></td>
+		  <td><%=all.name%></td>
+		  <td><%=all.country%></td>
+		  <td><%=all.points%></td>
+	  </tr>
+	  <%})%>
+  </tbody>
+</table></div>
+	<div class="tab-pane fade" id="list-team" role="tabpanel" aria-labelledby="list-team-list">  <table class="table">
+		<thead>
+    <tr>
+      <th scope="col">Rank</th>
+      <th scope="col">Team Name</th>
+	  <th scope="col">Matches</th>
+      <th scope="col">Points</th>
+	  <th scope="col">Ratingss</th>
+    </tr>
+  </thead>
+  <tbody>
+	  <%team.forEach(function(team){%>
+	  <tr>
+		  <td><%=team.rank%></td>
+		  <td><%=team.name%></td>
+		  <td><%=team.match%></td>
+		  <td><%=team.points%></td>
+		  <td><%=team.rating%></td>
+	  </tr>
+	  <%})%>
+  </tbody>
+</table></div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+<%- include("footer.ejs")%>

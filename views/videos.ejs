@@ -1,0 +1,251 @@
+<%- include("header.ejs")%>
+
+<meta charset ="utf-8">
+<meta name ="viewport" content ="width=device-width, initial-scale=1">
+ <script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
+<script src ="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"> </script>
+<script
+src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script
+src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+<style>
+	.subtitle{
+		color:#085078;
+		text-shadow: 2px 2px 5px rgba(0,0,0,0);
+		text-align:center;
+		padding-top: 8px;
+		padding-bottom: 5px;
+	}
+</style>
+    <div class="container">
+	  
+		<div class="row">
+			<div class="col-6 p-0">
+				  <h2 class="heading text-start" style="padding-top:5px"> Videos &nbsp; <span class="subtitle">- All cricket treasures at one place!</span></h2>
+			</div>
+			<div class="col-3">
+				
+			</div>
+			<div class="col-3">
+				<div class="active-lime-3" style="padding-top:5px">
+					<form>
+					  <div class="p-1 bg-light rounded rounded-pill shadow-sm ">
+						<div class="input-group">
+							<div class="input-group-append">
+							  <button id="button-addon1" type="submit" class="btn btn-link text-primary"><i class="fa fa-search"></i></button>
+							</div>
+						  <input type="search" placeholder="What are you searching for?" aria-describedby="button-addon1" class="form-control border-0 bg-light">
+						</div>
+					  </div>
+					 </form>
+				</div>
+			</div>
+			<hr>
+		</div>
+		
+    </div>
+		
+
+
+
+		<div class="container">
+
+			<div class="row">
+
+				<div class="col-3 box p-0" style="margin-top:10px;">
+				<div class="container" style="margin-top:10px">
+				  <!-- <div class="sliderId"> -->
+					  <div class="row">
+						  <div class="col">
+							  <!-- style="padding-top:5px;margin-left:10px" -->
+							 <h4 class="text-start" style="padding-top:5px;" > Filters </h4>
+						  </div>
+						  <div class="col d-flex justify-content-end">
+							  <button type="button" class="btn btn-outline-primary">Apply</button>
+							  
+						  </div>  
+					  </div>
+					<hr>
+					<nav class ="navbar navbar-light bg-light">
+                     <h4>
+						 Duration
+					  </h4>
+					<div class="price-range-block" style="width:100%;margin-top:10px ">
+
+	<div  id="slider-range" class="price-filter-range" name="rangeInput"></div>
+
+	
+	  <input type="number" min="2000" max="2021" oninput="validity.valid||(value='2000');" id="min_price" class="price-range-field" />
+	  <input type="number" min="2000" max="2021" style="margin-left:100px" oninput="validity.valid||(value='2021');" id="max_price" class="price-range-field" />
+
+
+
+</div>
+					</nav>
+					
+
+                   <hr>
+				  </div>
+				
+				<div class="container">
+					<form>
+						 <nav class ="navbar navbar-light bg-light">
+						  <h4> Format </h4>
+							<button type="button" class="collapsible"><i class="fa fa-plus" aria-hidden="true"></i></button>
+								<div class="content" style="width:100%">
+									<div class="row">
+										<div class="col-6">
+											<input type="checkbox"><label class="ms-2"> ICC</label>	<br>
+											<input type="checkbox"><label class="ms-2"> TESTs</label><br>
+										</div>
+										<div class="col-6">
+											<input type="checkbox"><label class="ms-2"> ODIs</label><br>
+											<input type="checkbox"><label class="ms-2"> T20s</label><br>	
+										</div>
+									</div>
+							    </div>
+						</nav>
+
+					</form>
+					<hr>
+				</div>
+				
+
+				<div class="container">
+					<form>
+						 <nav class ="navbar navbar-light bg-light">
+					
+							<h4> Team</h4>
+						
+					<button type="button" class="collapsible"><i class="fa fa-plus" aria-hidden="true"></i></button>
+					<div class="content" style="width:100%">
+						<div class="row">
+						<div class="col">
+							<input type="checkbox"><label class="ms-1"> India</label><br>
+							<input type="checkbox"><label class="ms-1"> England</label><br>
+							<input type="checkbox"><label class="ms-1"> West Indies</label><br>
+							<input type="checkbox" ><label class="ms-1"> Bangladesh</label><br>
+							<input type="checkbox"><label class="ms-1"> Afganistan</label><br>
+							<input type="checkbox"><label class="ms-1"> Zimbabwe</label>
+						</div>
+						<div class="col">
+							<input type="checkbox"><label class="ms-1"> Australia</label><br>
+
+							<input type="checkbox"><label class="ms-1"> New zealand</label><br>
+
+							<input type="checkbox"><label class="ms-1"> Pakistan</label><br>
+
+							<input type="checkbox"><label class="ms-1"> Sri lanka</label><br>
+
+							<input type="checkbox"><label class="ms-1"> South africa</label><br>
+
+							<input type="checkbox"><label class="ms-1"> Ireland</label>
+						</div>
+						</div>
+					</div>
+						</nav>
+					</form>
+					<hr>
+				</div>
+                
+				</div>
+				<!-- <hr> -->
+
+				<!-- </div> -->
+				 <div class="col">
+					<div class="container box2" style="margin-top:10px;height:350px;">
+
+								<iframe style="width:100%;height:200px;margin-top:20px"
+								src="https://www.youtube.com/embed/tgbNymZ7vqY">
+								</iframe>
+						<h3>
+							Title
+						</h3>
+						<span>
+							Description
+						</span>
+						<p>
+							year
+						</p>
+
+					</div>
+				 </div>
+				 <div class="col">
+					<div class="container box2" style="margin-top:10px;height:350px;">
+
+								<iframe style="width:100%;height:200px;margin-top:20px"
+								src="https://www.youtube.com/embed/tgbNymZ7vqY">
+								</iframe>
+						<h3>
+							Title
+						</h3>
+						<span>
+							Description
+						</span>
+						<p>
+							year
+						</p>
+
+					</div>
+				 </div>
+				 <div class="col">
+					<div class="container box2" style="margin-top:10px;height:350px;">
+
+								<iframe style="width:100%;height:200px;margin-top:20px" 
+								src="https://www.youtube.com/embed/tgbNymZ7vqY">
+								</iframe>	
+						<h3>
+							Title
+						</h3>
+						<span>
+							Description
+						</span>
+						<p>
+							year
+						</p>
+
+					</div>
+				 </div>
+			</div>
+		</div>
+			 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
+	<script src="/jQuery.UI.js" type="text/javascript"></script>
+	<script src="/price_range_script.js" type="text/javascript"></script>
+
+	
+    	 <style>
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+</style>
+
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+	
+</script>
+			 
+
+<%- include("footer.ejs")%>

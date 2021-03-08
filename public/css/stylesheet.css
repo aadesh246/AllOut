@@ -1,0 +1,196 @@
+			.players
+			{
+				border-radius:30px;
+			}
+			.card
+			{
+				border-radius:30px;
+			}
+			  .dropdown-submenu {
+				position:relative; } .dropdown-submenu>.dropdown-menu {
+				top:0;
+				left:100%;
+				margin-top:-6px;
+				margin-left:-1px;
+				-webkit-border-radius:0 6px 6px 6px;
+				-moz-border-radius:0 6px 6px 6px;
+				border-radius:0 6px 6px 6px; } .dropdown-submenu:hover>.dropdown-menu {
+				display:block; } .dropdown-submenu>a:after {
+				display:block;
+				content:" ";
+				float:right;
+				width:0;
+				height:0;
+				border-color:transparent;
+				border-style:solid;
+				border-width:5px 0 5px 5px;
+				border-left-color:#333333;
+				margin-top:5px;
+				margin-right:-10px; } .dropdown-submenu:hover>a:after {
+				border-left-color: #999999; } .dropdown-submenu.pull-left {
+				float:none; } .dropdown-submenu.pull-left>.dropdown-menu {
+				left:-100%;
+				margin-left:10px;
+				-webkit-border-radius:6px 0 6px 6px;
+				-moz-border-radius:6px 0 6px 6px;
+				border-radius:6px 0 6px 6px; }
+			
+			.box{
+			    border-right: 2px solid #85D8CE;
+				box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+				padding-bottom: 2px;}
+			.box3{
+				/* border-left: 2px solid #85D8CE; */
+				border-top: 2px solid #85D8CE;
+				box-shadow: 0 4px 0 0 rgba(0,0,0,0.2);
+				padding-bottom: 2px;
+				margin-top: 25px;
+			}
+			
+			.box1{
+				border-left: 2px solid #85D8CE;
+				box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+				padding-bottom: 2px;
+			}
+			.box2{
+				border-left: 2px solid #85D8CE;
+				border-top: 2px solid #85D8CE;
+				box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+				padding-bottom: 30px;
+				margin-top: 10%;
+				margin-bottom: 5%;
+			}
+			.first-one{
+				padding-top: 10px;
+			}
+			h3{
+				color:#085078;
+				text-shadow: 2px 2px 5px rgba(0,0,0.5);
+				text-align:center;
+				padding-top: 8px;
+				padding-bottom: 5px;
+				}
+			
+			a{
+				text-decoration:none;
+			}
+			.team{
+				font-size: 1.5rem;
+			}
+			
+			.card{
+				margin-bottom: 10px;
+				box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+			}
+			
+			* {box-sizing:border-box}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none
+	;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #3272f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 10px;
+  width: 10px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+		.active:hover, .dropdown-item:hover{
+				background-color: #85D8CE;
+			} 
+		.active1, .dot:hover {
+	            background-color: #494B55;
+            }
+			.im{
+				height:250px;
+			}
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 6s;
+  animation-name: fade;
+  animation-duration: 6s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+.main {
+  font-weight:700;
+  display: block;
+  position: relative;
+	
+
+}
+.main::after {
+  content: "";
+  background: url('https://www.sportswallah.com/wp-content/uploads/2018/12/8q6H8J3MeX.jpg');
+	background-position:center;
+	background-size:cover;
+  opacity: 0.2;
+		border-radius:20px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;   
+}

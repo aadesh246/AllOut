@@ -1,0 +1,228 @@
+<%- include("header.ejs")%>
+<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+
+<style>
+body { font-family: sans-serif; }
+	
+/* results */
+	
+	.title{
+		box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+		background: #000033;
+		color: white;
+		padding: 2px 15px;
+		border-radius: 8px;
+	}
+	
+	.results .col-2,.col-4{
+		border-right: 2px solid rgba(224,224,209);
+	}
+	
+	.description{
+		font-size: 0.9rem;
+		font-style: italic;
+		font-weight: bold;
+		padding-right:30px;
+	}
+	.results .col-4,.col{
+		padding-left: 20px;
+	}
+	.date{
+		padding-top: 15px;
+		font-size: 0.9rem;
+		/* font-weight: lighter; */
+		color:#b3b3b3;
+	}
+	.teams,.score{
+		font-weight: bold;
+		font-size: 1.5rem;
+	}
+	.score{
+		color:#666666;
+	}
+	.results .col img{
+		height:auto;
+	}
+	
+	.results row{
+		padding-bottom: 2px solid rgba(224,224,209);
+	}
+	
+	
+/* -------- */
+	.carousel{
+		background: #085078;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #85D8CE, #085078);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #85D8CE, #085078);
+		padding:2%;
+	}
+.hide
+	{
+		display:none;
+}
+.carousel-cell {
+  width: 30%;
+  height: 200px;
+  margin-right: 10px;
+	
+  background: #8C8;
+  border-radius: 5px;
+  counter-increment: carousel-cell;
+}
+	.flickity-button-icon
+	{
+		
+
+	}
+.card
+	{
+		height:100%;
+	}
+
+/* cell number */
+.carousel-cell:before {
+  display: block;
+ 
+  line-height: 200px;
+  font-size: 80px;
+  color: white;
+}
+</style><div class ="container">
+	<h2 class="heading text-start">
+		Featured
+	</h2>
+
+	<div class="carousel" id="main"data-flickity='{ "groupCells": true ,"cellAlign":"left","wrapAround":"true"}'>
+		<%for(var i =1; i<=8;i++){%>
+  <div class="carousel-cell " id="<%=i%>"><div class="card" >
+				<div class="card-header">
+					<h6 id ="tour<%=i%>" style="font-weight:700">
+					
+						</h6>
+				</div>
+              <div class="card-body">
+                <h5 class="card-title text-center" id="title<%=i%>"></h5>
+                <h6 class="card-subtitle mb-2 text-muted text-center" id="match<%=i%>"></h6>
+				  <div class="container">
+					  <div class="row pd-1">
+						  <div class="col ps-0 d-flex justify-content-start">
+							  &nbsp; <img src="" id ="img1<%=i%>" height=20 width=30>&nbsp;&nbsp;<b id="team1<%=i%>"></b>
+						  </div>
+						  <div class="col pe-0 d-flex justify-content-end">
+							 <span id="score1<%=i%>"></span>
+						  </div>
+					  </div>
+					  <div class="row">
+						  <div class="col ps-0 d-flex justify-content-start">
+							  &nbsp; <img src ="" id ="img2<%=i%>" height=20 width=30>&nbsp;&nbsp;<b id="team2<%=i%>"></b>
+						  </div>
+						  <div class="col pe-0 d-inline-flex justify-content-end">
+							 <span id="score2<%=i%>" ></span>
+						  </div>
+					  </div>
+				  </div>
+				  <!-- <p style="margin-bottom:8px;">&nbsp; <b id="team51" style="margin-right:2rem;"></b> <span id="score51"></span></p>
+				  <p style="margin-ottom:8px;">&nbsp; <b id="team52" style="margin-right:2rem;"></b><span id="score52" ></span></p> -->
+				  <hr style="margin:0;">
+				  <p id="status<%=i%>" style="font-size:0.9rem;margin:3px 0 0 0;text-align:center;color:#ff0000;"></p>
+             
+             </div>
+           </div></div>
+	<%}%>
+  </div>
+</div>
+	
+	<!-- All Matches -->
+<div class="container results">	
+	<h2 class="heading text-start mt-5 pb-3">
+		Results
+	</h2>
+	<%data.forEach(function(data){%>
+	<div class="row my-3">
+		<div class="col-2 d-flex justify-content-center align-items-center">
+			<span class="title"><%=data.format%></span>
+		</div>
+		<div class="col-4">
+			<div class="description"><span><%=data.match%></span></div>
+			
+			<div class="date"><span><%=data.date%></span></div>
+		</div>
+		<div class="col">
+			<span class="result"><%=data.result%></span>
+			<div>
+				<img src="/<%=data.image1%>.png" style="height:30px;width:35px;">&nbsp;
+				<span class="teams"><%=data.team1%></span>
+				<span class="score"><%=data.score1%></span>
+			</div>
+			<div class="mt-0">
+				<img src="/<%=data.image2%>.png" style="height:30px;width:35px;">&nbsp;
+				<span class="teams"><%=data.team2%></span>
+				<span class="score"><%=data.score2%></span>
+			</div>
+		</div>
+	</div>
+	<hr>
+	<%})%>
+</div>
+<script> 
+   
+ async function getISS() {
+        const response = await fetch("https://moviebuff.run-ap-south1.goorm.io/score1");  
+        const data = await response.json();
+	 var arr = data.data;
+	    for(var i =0; i<arr.length;i++)
+			{  var x = i+1;     
+				document.getElementById('tour'+(i+1)).innerText = arr[i].tour;
+			    document.getElementById('title'+(i+1)).innerText = arr[i].team1+ ' vs ' +arr[i].team2;
+			 document.getElementById('team1'+(i+1)).innerText = arr[i].team1;
+			 document.getElementById('team2'+(i+1)).innerText = arr[i].team2;
+			 document.getElementById('score1'+(i+1)).innerText = arr[i].score1;
+			 document.getElementById('score2'+(i+1)).innerText = arr[i].score2;
+			 document.getElementById('status'+(i+1)).innerText = arr[i].status;
+			document.getElementById('match'+(i+1)).innerText = arr[i].match;
+			 var name1,name2;
+			 var arr1 = arr[i].team1.split(" ");
+			 var arr2 = arr[i].team2.split(" ");
+			 if(arr1[1])
+				 {
+					 name1 = arr1[0][0]+arr1[1][0];
+					 
+				 }
+			 else if(arr1[0].length>2)
+				 name1 = arr1[0][0]+arr1[0][1]+arr1[0][2];
+			 else name1 = arr[i].team1;
+			 if(arr2[1])
+				 {
+					 name2 = arr2[0][0]+arr2[1][0];
+					 
+				 }
+			 
+			 else if(arr2[0].length>2)
+				 name2 = arr2[0][0]+arr2[0][1]+arr2[0][2];
+			 else name2 = arr[i].team2;
+			 if(arr[i].team1[arr[i].team1.length-1]=='W')
+				name1 = arr[i].team1.slice(0,arr[i].team1.length-1);
+			if(arr[i].team2[arr[i].team2.length-1]=='W')
+				name2 = arr[i].team2.slice(0,arr[i].team2.length-1);
+			
+			 name1 = name1.toLowerCase();
+			 name2 = name2.toLowerCase();
+			 if(name1=="afg"||name1=='aus'||name1=="ind"||name1=="ban"||name1=='eng'||name1=="sl"||name1=='rsa'|name1=='ire'||name1=='pak'||name1=='wi'||name1=='sl'||name1=='zim'||name1=='nz')
+				 {
+			 document.getElementById('img1'+(i+1)).setAttribute("src","http://moviebuff.run-ap-south1.goorm.io/"+name1+".png");
+			  document.getElementById('img2'+(i+1)).setAttribute("src","http://moviebuff.run-ap-south1.goorm.io/"+name2+".png");
+				 }
+				 else{
+			 document.getElementById('img1'+(i+1)).style.display="none";
+			  document.getElementById('img2'+(i+1)).style.display="none";
+					 
+				 }			 
+			}
+	 for(var i =arr.length+1;i<=8;i++)
+		 document.getElementById(i).style.display="none";
+ }
+	 
+      getISS();
+setInterval(getISS,3000);</script>
+
+<%- include("footer.ejs")%>

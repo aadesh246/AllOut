@@ -1,0 +1,137 @@
+<%- include("header.ejs")%>
+<%var tests=[];var odis=[]; var t20s=[]; ;var j=1;var spc=" ";
+matches.forEach(function(match)
+			   { j++;var home="",away="";
+	var ans = match.name.split(" ");  var posa,posv; var type;
+	for(var i =0; i<ans.length;i++)
+	{if(ans[i]=="v")
+			posv=i;
+	 if(ans[i]=="at")
+		 posa = i;
+	if(ans[i]=='ODI')type=2;
+	if(ans[i]=='T20I'||ans[i]=='T20')type=3;if(ans[i]=='Test')type=1;}
+	var i = 0; 
+	while(i<2&& i!=posv)
+		{
+			home += ans[i];
+			if(i!=1&&i!=posv-1)
+			home +=spc;
+			i++;
+		}
+			
+
+	i = posv+1;
+	while(i<posv+3&& i!=posa)
+		{
+			away += ans[i];
+			if(i!=posv+2&&i!=posa-1)
+			away +=' ';
+			i++;
+		} var ch =0;
+	var loc = ans[posa+1];
+				if(loc[loc.length-1]!=',')
+				{loc+=' '+ans[posa+2]; ch=1;}
+	var location = loc.slice(0, -1);
+	var date = match.date;
+	var desc=" ";
+	for(var i=0; i<ans.length;i++)
+		{ if(ch==1&&i==posa+2)continue;if(i!=posa&&i!=posa+1)
+			desc+=ans[i];
+		 desc+=' ';
+		}
+	var obj ={home:home,away:away,date:date,loc:location,desc:desc};
+	if(type==1)
+		tests.push(obj);
+	if(type==2)
+		odis.push(obj);
+	if(type==3)
+		t20s.push(obj);
+})
+%>
+<div class="container">
+	<div class="row">
+  <div class="col-4">
+    <div class="list-group box5" id="list-tab" role="tablist">
+      <a class="list-group-item list-group-item-action active text-center" id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab" aria-controls="home">Tests &nbsp;
+		  <img src="https://www.rebelsport.com.au/dw/image/v2/BBRV_PRD/on/demandware.static/-/Sites-srg-internal-master-catalog/default/dwe3fa8393/images/45094401/Rebel_45094401_hi-res.jpg?sw=1000&sh=1000&sm=fit" style="height:30px;width:30px;border-radius:50px;">
+		</a>
+      <a class="list-group-item list-group-item-action text-center" id="list-profile-list" data-bs-toggle="list" href="#list-profile" role="tab" aria-controls="profile">ODIs &nbsp;
+		  <img src="https://kdsport.com.au/images/detailed/0/kd-training-2p-white.jpg" style="height:30px;width:30px;border-radius:50px;">
+		</a>
+      <a class="list-group-item list-group-item-action text-center" id="list-messages-list" data-bs-toggle="list" href="#list-messages" role="tab" aria-controls="messages">T20s &nbsp;
+		  <img src="http://www.crickettrainingballs.com.au/wp-content/uploads/2014/07/White-cricket-ball-4-piece.png" style="height:30px;width:30px;border-radius:50px;">
+		</a>
+    </div>
+  </div>
+  <div class="col-8">
+    <div class="tab-content box4" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+		  <table class="table">
+  <tbody>
+	  <%tests.forEach(function(test)
+					 {%>
+		  
+	  
+    <tr>
+      <th scope="row"><%=test.away%> Tour of <%=test.home%></th>
+      <td><%=test.desc%><p class="fst-italic">
+		  <%=test.loc%>
+		  </p></td>
+      <td><%=test.date%></td>
+	  </tr><%})%>
+	  
+      
+  </tbody>
+</table>
+	  </div>
+      <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">  <table class="table">
+  <tbody>
+	  <%odis.forEach(function(test)
+					 {%>
+		  
+	  
+    <tr>
+      <th scope="row"><%=test.away%> Tour of <%=test.home%></th>
+      <td><%=test.desc%><p class="fst-italic">
+		  <%=test.loc%>
+		  </p></td>
+      <td><%=test.date%></td>
+	  </tr><%})%>
+	  
+      
+  </tbody>
+</table></div>
+      <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">  <table class="table">
+  <tbody>
+	  <%t20s.forEach(function(test)
+					 {%>
+		  
+	  
+    <tr>
+      <th scope="row"><%=test.away%> Tour of <%=test.home%></th>
+      <td><%=test.desc%><p class="fst-italic">
+		  <%=test.loc%>
+		  </p></td>
+      <td><%=test.date%></td>
+	  </tr><%})%>
+	  
+      
+  </tbody>
+</table></div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<%- include("footer.ejs")%>

@@ -1,0 +1,186 @@
+<%- include("header.ejs")%>
+
+<style>
+.form-group.required .control-label:after {
+	  content:"*";
+	  color:red;
+	position: absolute;
+    margin-left: 1px;
+}
+</style>
+
+<div class="container">
+	<div class="row">
+	         <h1 style="text-align: center;">post new video</h1>
+	   <div style="width:30%;  margin:30px auto">
+	           <form action="/campgrounds" method="POST">
+				   <div class="form-group required">
+					   <label class="control-label"><input  type="text" name="name" placeholder="name" required style="width: 380px;"></label>
+				   </div>
+				   <div class="form-group required">
+					   <label class="control-label"><input  type="text" name="year" placeholder="year" required style="width: 380px;"></label>
+				   </div>
+				   <div class="form-group required">
+					   <label class="control-label"><input  type="text" name="video" placeholder="video-url" required style="width: 380px;"></label>
+	               </div>
+				   <div class="form-group">
+                      <textarea class="form-control" type="text" name="description" rows="3" placeholder="description" style="width: 380px;"></textarea>
+                   </div>
+				   <div class="form-group">
+					   <button class="btn btn-success btn-sm btn-block" style="text-center">submit</button>  
+				   </div>
+	                 
+               </form>	   
+	   </div>
+      
+	</div>
+	 
+</div>
+<div class="container">
+	<h2 class="heading text-start">
+		Featured Matches
+	</h2>
+	<div class="main-carousel mt-3">
+		<div class="carousel-cell">
+
+				<div class="card-header">
+					<h6>
+						England Tour of India 2021
+					</h6>
+				</div>
+              <div class="card-body">
+                <h5 class="card-title"><img src="https://czarenel.files.wordpress.com/2015/07/india-flag-a4.jpg" style="height:15px;width:15px;padding-bottom:2px; margin-right:5px">IND vs ENG<img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/1200px-Flag_of_England.svg.png" style="height:15px;width:15px;padding-bottom:2px;margin-left:5px"></h5>
+                <h6 class="card-subtitle mb-2 text-muted">3rd Test</h6>
+				  <div class="container">
+					  <div class="row pb-1">
+						  <div class="col ps-0 d-flex justify-content-start">
+							  &nbsp; <b id="team11"></b>
+						  </div>
+						  <div class="col pe-0 d-flex justify-content-end">
+							 <span id="score11"></span>
+						  </div>
+					  </div>
+					  <div class="row">
+						  <div class="col ps-0 d-flex justify-content-start">
+							  &nbsp; <b id="team12"></b>
+						  </div>
+						  <div class="col pe-0 d-flex justify-content-end">
+							 <span id="score12" ></span>
+						  </div>
+					  </div>
+				  </div>
+				  <!-- <p style="margin-bottom:8px;">&nbsp; <b id="team11" style="margin-right:2rem;"></b> <span id="score11"></span></p>
+				  <p style="margin-bottom:8px;">&nbsp; <b id="team12" style="margin-right:2rem;"></b><span id="score12" ></span></p> -->
+				  <hr style="margin:0;">
+				  <p id="status1" style="font-size:0.9rem;margin:3px 0 0 0;text-align:center;color:#ff0000;"></p>
+             </div>
+           </div>
+		</div>
+		<div class="carousel-cell">
+			<div class="card" >
+				<div class="card-header">
+					<h6>
+						England Tour of India 2021
+					</h6>
+				</div>
+              <div class="card-body">
+                <h5 class="card-title"><img src="https://czarenel.files.wordpress.com/2015/07/india-flag-a4.jpg" style="height:15px;width:15px;padding-bottom:2px; margin-right:5px">IND vs ENG<img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/1200px-Flag_of_England.svg.png" style="height:15px;width:15px;padding-bottom:2px;margin-left:5px"></h5>
+                <h6 class="card-subtitle mb-2 text-muted">3rd Test</h6>
+				  <div class="container">
+					  <div class="row pb-1">
+						  <div class="col ps-0 d-flex justify-content-start">
+							  &nbsp; <b id="team11"></b>
+						  </div>
+						  <div class="col pe-0 d-flex justify-content-end">
+							 <span id="score11"></span>
+						  </div>
+					  </div>
+					  <div class="row">
+						  <div class="col ps-0 d-flex justify-content-start">
+							  &nbsp; <b id="team12"></b>
+						  </div>
+						  <div class="col pe-0 d-flex justify-content-end">
+							 <span id="score12" ></span>
+						  </div>
+					  </div>
+				  </div>
+				  <!-- <p style="margin-bottom:8px;">&nbsp; <b id="team11" style="margin-right:2rem;"></b> <span id="score11"></span></p>
+				  <p style="margin-bottom:8px;">&nbsp; <b id="team12" style="margin-right:2rem;"></b><span id="score12" ></span></p> -->
+				  <hr style="margin:0;">
+				  <p id="status1" style="font-size:0.9rem;margin:3px 0 0 0;text-align:center;color:#ff0000;"></p>
+             </div>
+           </div>
+		</div>
+		<div class="carousel-cell">
+			<div class="card" >
+				<div class="card-header">
+					<h6>
+					  Australia Tour of New Zealand 2021
+					</h6>
+				</div>
+              <div class="card-body">
+                <h5 class="card-title"><img src="https://www.countryflags.com/wp-content/uploads/new-zealand-flag-png-large.png" style="height:15px;width:15px;padding-bottom:2px; margin-right:5px">NZ vs AUS<img src="https://www.countryflags.com/wp-content/uploads/australia-flag-png-xl.png" style="height:15px;width:15px;padding-bottom:2px;margin-left:5px"></h5>
+                <h6 class="card-subtitle mb-2 text-muted">2nd T20I</h6>
+				  <div class="container">
+					  <div class="row pd-1">
+						  <div class="col ps-0 d-flex justify-content-start">
+							  &nbsp; <b id="team21"></b>
+						  </div>
+						  <div class="col pe-0 d-flex justify-content-end">
+							 <span id="score21"></span>
+						  </div>
+					  </div>
+					  <div class="row">
+						  <div class="col ps-0 d-flex justify-content-start">
+							  &nbsp; <b id="team22"></b>
+						  </div>
+						  <div class="col pe-0 d-inline-flex justify-content-end">
+							 <span id="score22" ></span>
+						  </div>
+					  </div>
+				  </div>
+				  <!-- <p style="margin-bottom:8px;">&nbsp; <b id="team21" style="margin-right:2rem;"></b> <span id="score21"></span></p>
+				  <p style="margin-bottom:8px;">&nbsp; <b id="team22" style="margin-right:2rem;"></b><span id="score22" ></span></p> -->
+				  <hr style="margin:0;">
+				  <p id="status2" style="font-size:0.9rem;margin:3px 0 0 0;text-align:center;color:#ff0000;"></p>
+                          </div>
+           </div>
+		</div>
+		<div class="carousel-cell">
+			<div class="card" >
+				<div class="card-header">
+					<h6>
+						CSA T20 Challenge 2021
+					</h6>
+				</div>
+              <div class="card-body">
+                <h5 class="card-title">WAR vs KNI</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Domestic</h6>
+				  <div class="container">
+					  <div class="row pd-1">
+						  <div class="col ps-0 d-flex justify-content-start">
+							  &nbsp; <b id="team51"></b>
+						  </div>
+						  <div class="col pe-0 d-flex justify-content-end">
+							 <span id="score51"></span>
+						  </div>
+					  </div>
+					  <div class="row">
+						  <div class="col ps-0 d-flex justify-content-start">
+							  &nbsp; <b id="team52"></b>
+						  </div>
+						  <div class="col pe-0 d-inline-flex justify-content-end">
+							 <span id="score52" ></span>
+						  </div>
+					  </div>
+				  </div>
+				  <!-- <p style="margin-bottom:8px;">&nbsp; <b id="team51" style="margin-right:2rem;"></b> <span id="score51"></span></p>
+				  <p style="margin-bottom:8px;">&nbsp; <b id="team52" style="margin-right:2rem;"></b><span id="score52" ></span></p> -->
+				  <hr style="margin:0;">
+				  <p id="status5" style="font-size:0.9rem;margin:3px 0 0 0;text-align:center;color:#ff0000;"></p>
+             
+             </div>
+           </div>
+		</div>
+
+<%- include("footer.ejs")%>
