@@ -1,0 +1,84 @@
+<%- include("header.ejs")%>
+
+<style>
+	form{
+		border: 2px solid rgba(255,255,255,0.6);
+		box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	}
+</style>
+<div class="container">
+		<h2>
+			<%=match.team1.name%> &nbsp; Vs &nbsp;<%=match.team2.name%>
+		</h2>
+	<%if(match.team1.players.length==0){%>
+<form action="/<%=match._id%>/addPlayer" method="POST" >
+	
+	<div class="row">
+		<div class="col-sm">
+	<label for="team1" class="form-label">Add Players for Team1</label>
+	  <%for(var i =0; i<20;i++){%>
+    <input type="text" class="form-control" id="team1" name="team1[]"><%}%>
+  </div>
+		<div class="col-sm">
+	<label for="team2" class="form-label">Add Players for Team2</label>
+	  <%for(var i =0; i<20;i++){%>
+    <input type="text" class="form-control" id="team2" name="team2[]"><%}%>
+  </div>
+	</div>
+	<button type="submit" class="btn btn-primary">Submit</button>
+</form><%}%>
+	
+<%if(match.team1.players.length!=0){%>
+<h3>
+	Update toss
+	</h3>
+	<form action = "/match/<%=match._id%>/toss" method="POST">
+		<input type="text" name="toss" placeholder="TOSS">
+	<input type="submit">
+	</form>
+	<h3>
+	Select Playing 11
+</h3> <form action ="/match/<%=match._id%>/addPlaying" method ="POST">
+	
+	
+<div class="row">
+	<div class ="col-6">
+		<b><%=match.team1.name%></b><br>
+		<%match.team1.players.forEach(function(player)
+									 {%>
+			
+		<input type = "checkbox" checked value ="<%=player._id%>" name = "team1[]"><%=player.name%><br>
+		<%})%>
+	</div>
+	<div class ="col-6">
+		<b><%=match.team2.name%></b><br>
+		<%match.team2.players.forEach(function(player)
+									 {%>
+			
+		<input type = "checkbox" checked value ="<%=player._id%>" name = "team2[]"><%=player.name%><br>
+		<%})%>
+	</div>
+	<button type="submit" class="btn btn-primary ms-3" style="width:10%"  >
+		Submit
+	</button>
+	</div>
+	
+	</form>
+	
+	<h3>
+		 Add Innings
+	</h3>
+	<form action="/match/<%=match._id%>/addInning" method="POST">
+		<label for="team">Choose a team:</label>
+         <select name="inning" id="team">
+           <option ><%=match.team1.name%></option>
+           <option ><%=match.team2.name%></option>
+         </select>
+		<button type="submit" class="btn btn-primary ms-2" >
+		Submit
+	</button>
+	</form>
+	<%}%>
+</div>
+	
+<%- include("footer.ejs")%>

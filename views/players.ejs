@@ -1,0 +1,30 @@
+<%- include("header.ejs")%>
+<script>$('#5').css('background','#85D8CE');$('#5').css('border-radius','10px')</script>
+<style>
+	input{
+		border:none;
+		padding:8px;
+		box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	}
+	a{
+		text-decoration:none;
+	}
+</style>
+
+<div class="container">
+	<form action="/players/search" method="GET">
+			<input type="text"  name="name" placeholder="Name of The Player" size="50" class="mt-3">
+		<button type="submit" class="btn btn-primary">	Search
+	</button>
+	</form><ul>
+	
+	
+	<%if(!ans){players.forEach(function(player)
+							 {%>	
+	<li><a href="/players/single/<%=player.pid%>"><%=player.name%></a></li>
+	<%})}%>
+		</ul>
+</div>
+
+
+<%- include("footer.ejs")%>

@@ -1,0 +1,170 @@
+<%- include("header.ejs")%><%var batTeam,bowlTeam;if(inning.team.trim()==match.team1.name.trim())
+{batTeam = match.team1;
+    bowlTeam = match.team2;}
+else{
+	batTeam = match.team2;
+    bowlTeam = match.team1;
+}%><style>.navbar{display:none} iframe{display:none;}</style>
+	
+	<h3>
+	Batting Team : - <%=inning.team%>
+	<span id="score"> <%=inning.currentScore%>/<%=inning.wickets%> (<%=inning.overs%>)</span> 
+</h3>
+<div class="row">
+	<div class="col-3">
+	
+<form target ="frame" action = "/match/<%=match._id%>/innings/<%=inning._id%>/addBatsmen" method="POST">
+	Add Batsman<select name = "batsman" >
+	  <%batTeam.players.forEach(function(player){if(player.isPlaying){%>
+	    
+		<option value="<%=player._id%>"><%=player.name%></option>
+	<%}})%>
+	</select>
+	<input type="Submit">
+		</form></div>
+	<div class="col-9">
+		Batsmen:-
+		<%inning.batsmen.forEach(function(player)
+								 {%>
+			<%=player.name%>,
+		<%})%>
+	</div>
+	<div class ="col-3">
+		
+<form target ="frame" action = "/match/<%=match._id%>/innings/<%=inning._id%>/addBowlers" method="POST">
+	Add Bowlers<select name = "bowler" >
+	  <%bowlTeam.players.forEach(function(player){if(player.isPlaying){%>
+		<option value="<%=player._id%>"><%=player.name%></option>
+	<%}})%>
+	</select>
+	<input type="Submit">
+		</form></div>
+<div class="col-9a">
+		Bowlers:-
+		<%inning.bowlers.forEach(function(player)
+								 {%>
+			<%=player.name%>,
+		<%})%>
+	</div></div>
+	<form  target ="frame" action ="/match/<%=match._id%>/innings/<%=inning._id%>/scoring" method ="POST">
+		
+
+On Strike:-
+	<select id ="onstrike"name ="onstrike">
+		<%inning.batsmen.forEach(function(player)
+										{if(!player.isOut){%>
+		<option value="<%=player._id%>"><%=player.name%></option>
+		<%}})%>
+	</select>
+	Off Strike:-
+	<select id ="offstrike"name ="offstrike">
+		<%inning.batsmen.forEach(function(player)
+										{if(!player.isOut){%>
+		<option value="<%=player._id%>"><%=player.name%></option>
+		<%}})%>
+	</select>
+		<a  href="#"onclick ="boop()" >
+			Switch
+		</a>&nbsp;&nbsp;
+		Current Bowler:-
+		<select id="currentbowler" name="currentbowler" class="ml-5">
+			<%inning.bowlers.forEach(function(player){%>
+			<option value="<%=player._id%>"><%=player.name%></option>
+			<%})%>
+		</select>
+		<br><br>
+		Over:
+		<input type="number" class="ms-4"  name="over" step="0.1" value="<%=inning.overs%>" min=0>
+		
+		<br>
+		
+		
+		Runs:
+		<input type="number" class="ms-4" id="runs" name="runs" step="1" value=0 min=0>
+		
+		Wide:
+		<input type="number" class="ms-4" id="wide" name="wide" step="1" value=0 min=0>
+		
+		LegByes:
+		<input type="number" class="ms-4" id="legbyes" name="legbyes" step="1"  value=0 min=0>
+		
+		Byes:
+		<input type="number" class="ms-5" id="byes" name="byes" step="1"  min=0 value=0>
+		
+		Noball:
+		<input type="number" class="ms-4" id="noball" name="noball" step="1"  min=0 value=0>
+		<br>
+		Penalty:
+		<input type="number" class="ms-4" id="penalty" name="penalty" step="1"  min=0 value=0>
+		<br>
+		IsMaiden:-
+		<select name="isMaiden">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</select>
+		
+		<br>
+		Over Finished:-
+		<select name="isOver">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</select>
+		
+		Fall Of Wicket:-
+		<select name="fallofwicket" style="ms-5">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</select>
+		Batsman Out:-
+		<select name ="batsmanout">
+		<%inning.batsmen.forEach(function(player)
+										{if(!player.isOut){%>
+		<option value="<%=player._id%>"><%=player.name%></option>
+		<%}})%>
+	    </select>
+		How out:-
+		<input type="text" name="howout">
+		IsRunout:-
+		<select name="isrunout">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</select>
+		<br><br>
+		Was Previous delivery a No Ball:-
+		<select name="isPreNo">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</select>
+		Comment:-
+		<textarea  name ="comment" rows=8 cols=50>
+		</textarea>
+		isComment:
+		<select name="isComment">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</select>
+		<br>
+		<input type="text" name ="status" placeholder ="Update Match Result Once Declared" width=200>
+		<button>
+			Submit
+		</button>
+		
+		</form>
+          
+<iframe name="frame" style="display:none"></iframe>
+<script>
+
+	function boop()
+						{
+						
+			let onstrike = document.getElementById('onstrike');
+		let offstrike = document.getElementById('offstrike');
+       var val1 = onstrike.value;
+		var val2 = offstrike.value;
+			onstrike.value = val2;
+		offstrike.value = val1;
+		
+		
+						}
+</script>
+<%-include("footer.ejs")%>

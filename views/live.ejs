@@ -1,4 +1,5 @@
 <%- include("header.ejs")%>
+<script>$('#2').css('background','#85D8CE');$('#2').css('border-radius','10px')</script>
 <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 
 <style>
@@ -18,11 +19,11 @@ body { font-family: sans-serif; }
 		border-right: 2px solid rgba(224,224,209);
 	}
 	
-	.description{
+	.description,.stadium{
 		font-size: 0.9rem;
 		font-style: italic;
 		font-weight: bold;
-		padding-right:30px;
+	
 	}
 	.results .col-4,.col{
 		padding-left: 20px;
@@ -32,6 +33,10 @@ body { font-family: sans-serif; }
 		font-size: 0.9rem;
 		/* font-weight: lighter; */
 		color:#b3b3b3;
+	}
+	.hello1{
+		height:30px;
+		width:35px;
 	}
 	.teams,.score{
 		font-weight: bold;
@@ -72,13 +77,11 @@ background: linear-gradient(to right, #85D8CE, #085078);
 	.flickity-button-icon
 	{
 		
-
 	}
 .card
 	{
 		height:100%;
 	}
-
 /* cell number */
 .carousel-cell:before {
   display: block;
@@ -87,6 +90,33 @@ background: linear-gradient(to right, #85D8CE, #085078);
   font-size: 80px;
   color: white;
 }
+	
+	 @media only screen and (max-width: 600px) {
+		  .carousel-cell {
+			width:90%;
+			height:210px;
+			font-size:0.65rem;
+		  }
+		.flickity-button{
+			display:none;	
+	    }
+		 .hello{
+			 width:100%;
+			 font-size:0.90rem;
+		 }
+		 .description,.stadium{
+			 font-size:0.75rem;
+		 }
+		 .hello1{
+			 height:20px;
+			 width:25px;
+		 }
+		 .teams,.score{
+			 font-size:20px;
+		 }
+	}	
+	
+	
 </style><div class ="container">
 	<h2 class="heading text-start">
 		Featured
@@ -95,12 +125,12 @@ background: linear-gradient(to right, #85D8CE, #085078);
 	<div class="carousel" id="main"data-flickity='{ "groupCells": true ,"cellAlign":"left","wrapAround":"true"}'>
 		<%for(var i =1; i<=8;i++){%>
   <div class="carousel-cell " id="<%=i%>"><div class="card" >
-				<div class="card-header">
+				<div class="card-header ">
 					<h6 id ="tour<%=i%>" style="font-weight:700">
 					
 						</h6>
 				</div>
-              <div class="card-body">
+              <div class="card-body ">
                 <h5 class="card-title text-center" id="title<%=i%>"></h5>
                 <h6 class="card-subtitle mb-2 text-muted text-center" id="match<%=i%>"></h6>
 				  <div class="container">
@@ -138,24 +168,26 @@ background: linear-gradient(to right, #85D8CE, #085078);
 		Results
 	</h2>
 	<%data.forEach(function(data){%>
-	<div class="row my-3">
+	<div class="row my-3 hello">
 		<div class="col-2 d-flex justify-content-center align-items-center">
 			<span class="title"><%=data.format%></span>
 		</div>
 		<div class="col-4">
 			<div class="description"><span><%=data.match%></span></div>
-			
+		    <div class ="stadium">
+				<span><%=data.stadium%></span>
+			</div>	
 			<div class="date"><span><%=data.date%></span></div>
 		</div>
 		<div class="col">
 			<span class="result"><%=data.result%></span>
-			<div>
-				<img src="/<%=data.image1%>.png" style="height:30px;width:35px;">&nbsp;
+			<div >
+				<img class="hello1" src="/<%=data.image1%>.png" >&nbsp;
 				<span class="teams"><%=data.team1%></span>
 				<span class="score"><%=data.score1%></span>
 			</div>
 			<div class="mt-0">
-				<img src="/<%=data.image2%>.png" style="height:30px;width:35px;">&nbsp;
+				<img class="hello1" src="/<%=data.image2%>.png" >&nbsp;
 				<span class="teams"><%=data.team2%></span>
 				<span class="score"><%=data.score2%></span>
 			</div>

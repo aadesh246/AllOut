@@ -1,12 +1,18 @@
 <html>
 	<head>
-		<meta name="viewport" content="width=device-width,initial-scale=0.02">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="/jQuery.UI.css" type="text/css" media="all" />
 	<link rel="stylesheet" type="text/css" href="/style.css"/>
+   
+      <script src="https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit" async defer></script>
 
+    
 
 		<title>AllOut - The Desi Hub for Cricket</title>
 		<style>
+			
+			
+			
 					.players
 			{
 				border-radius:30px;
@@ -54,9 +60,9 @@
 			}
 			.box3{
 				/* border-left: 2px solid #85D8CE; */
-				border-top: 2px solid #85D8CE;
-				box-shadow: 0 4px 0 0 rgba(0,0,0,0.2);
-				padding-bottom: 2px;
+				border-top: 2px solid rgba(133,216,206);
+				border-bottom: 2px solid rgba(133,216,206);
+				padding-bottom: 10px;
 				margin-top: 25px;
 			}
 			
@@ -89,18 +95,16 @@
 				padding-top: 8px;
 				padding-bottom: 5px;
 				}
-			a{
-				text-decoration:none;
-			}
-			.team{
-				font-size: 1.5rem;
-			}
+			
+			
 			
 			.card{
 				margin-bottom: 10px;
 				box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 			}
-			
+			a{
+				text-decoration:none
+			}
 			* {box-sizing:border-box}
 
 /* Slideshow container */
@@ -117,7 +121,7 @@
 }
 
 /* Next & previous buttons */
-.prev, .next {
+.prev, .next{
   cursor: pointer;
   position: absolute;
   top: 50%;
@@ -165,6 +169,7 @@
   display: inline-block;
   transition: background-color 0.6s ease;
 }
+
 		.active:hover, .dropdown-item:hover{
 				background-color: #85D8CE;
 			} 
@@ -200,10 +205,10 @@
 }
 .main::after {
   content: "";
-  background: url('https://www.sportswallah.com/wp-content/uploads/2018/12/8q6H8J3MeX.jpg');
+  background: url('https://i.ibb.co/vwmhJpP/download.jpg');
 	background-position:center;
 	background-size:cover;
-  opacity: 0.2;
+  opacity: 0.1;
 		border-radius:20px;
   top: 0;
   left: 0;
@@ -227,36 +232,45 @@
 <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js'></script>
 	
-
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://use.typekit.net/ilx8lsl.css">
+		<style>body{font-family:"merriweather"}</style>
     </head>
 	<body >
-		
+		<style>* {
+   box-sizing: border-box;
+}</style>
 		
 		<nav  class="navbar navbar-expand-lg navbar-dark mb-3 " style="background: #085078;  /* fallback for old browsers */
 background: -webkit-linear-gradient(to right, #85D8CE, #085078);  /* Chrome 10-25, Safari 5.1-6 */
 background: linear-gradient(to right, #85D8CE, #085078); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 ">
 			<div class="container">
-				<a class="navbar-link" href="/"><img src = "/logo.jpg" style="height:80px" class="me-3"></a> <span style=" font-size:40px; font-family:londrina Solid">AllOu</span>
+				<a class="navbar-link" href="/"><img src = "/mysc.png" style="height:80px;border-radius:50px;"  class=" me-0 me-sm-1"></a> <a href="/" style="text-decoration:none"><span style=" font-size:35px; font-family:chewy;color:white">cricdesi</span></a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-		  <li class="nav-item">
-		  <img style="display:inline;height:30px; width:30px" class="mt-1 ms-0 ps-0 me-5"src="/1.png"></li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/live">Live</a>
+		  
+		  &nbsp;&nbsp;
+		  
+		<li class="nav-item ms-sm-5">
+          <a class="nav-link active" aria-current="page" id="1" href="/featured">Featured</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link active" aria-current="page" id="2"href="/live">Live</a>
         </li>
 		  
         <li class="nav-item">
-          <a class="nav-link active" href="/schedule">Schedule</a>
+          <a class="nav-link active"id="3" href="/schedule">Schedule</a>
         </li>
-		<li class="nav-item">
-          <a class="nav-link active" href="/news">News</a>
+		<li class="nav-item ">
+          <a class="nav-link active" id="4" href="/news">News</a>
         </li>
-		  <li class="nav-item dropdown">
-				<a class="  nav-link active" href="#" id="navdropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Info <i class="fas fa-caret-down"></i></a>
+		  <li class="nav-item  dropdown">
+				<a class="  nav-link active" href="#" id="5" role="button" data-bs-toggle="dropdown" aria-expanded="false">Info <i class="fas fa-caret-down"></i></a>
 				<ul class="dropdown-menu" role="menu" aria-labelledby="navdropdown" style="background: #085078;  /* fallback for old browsers */
 background: -webkit-linear-gradient(to right, #85D8CE, #085078);  /* Chrome 10-25, Safari 5.1-6 */
 background: linear-gradient(to right, #85D8CE, #085078); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -274,27 +288,38 @@ background: linear-gradient(to right, #85D8CE, #085078); /* W3C, IE 10+/ Edge, F
 						</ul> -->
 					<!-- </li> -->
 					<li><a class="dropdown-item" href="/ranking">Rankings</a></li>
-					<li><a class="dropdown-item" href="#">Player Details</a></li>
+					<li><a class="dropdown-item" href="/players">Player Details</a></li>
 				</ul>
 		</li>
 		<li class="nav-item">
-          <a class="nav-link active" href="/memes">Memes</a>
+          <a class="nav-link active" id="6"href="/memes">Memes</a>
         </li>
 		<li class="nav-item">
-				<a class=" active nav-link" href="/videos">Videos 
+				<a class="  nav-link active" id='vid' href="/videos">Videos 
 </a>
 				
 		</li>
-        <!-- <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li> -->
-      </ul>
-      <form class="d-flex mt-2">
-        <input class="form-control me-2 " type="search" placeholder="Search..." aria-label="Search">
-        <button type="submit">
-			<i class="fas fa-search"></i>
-		  </button>
-      </form>
+        </ul>
+      <form class="d-flex mt-2" action ="/players/search" method='GET'>
+		  
+		  
+        <input class="form-control me-2 " name = "name"type="search" placeholder="Search for players" aria-label="Search">
+       <button type="submit">
+		 <i class="fas fa-search"></i>
+		  </button></form>
+      </div>
     </div>
-			</div>
+			
 </nav>
+		<div class ="container">
+			<%if(error&&error.length>0){%><div class="alert alert-danger alert-dismissible text-center" role="alert">
+		
+<%=error%>	<button type="button" class="close "  style="float:right;background:none;border:none;"data-dismiss="alert" aria-label="Close">
+  <span aria-hidden="true">&times;</span>
+</button></div>
+
+			
+			<%}%></div>
+		<style>	.featured{
+		color:black
+			}</style>

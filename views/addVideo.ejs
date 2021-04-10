@@ -1,0 +1,32 @@
+<%- include("header.ejs")%>
+<div class="container" style="text-align:center;width:60%;">
+	<h2 class="heading">
+		Add New Videos
+	</h2>
+<form action="/videos" method="POST">
+  <div class="mb-3 d-flex justify-content-center">
+    <input type="text" class="form-control" placeholder="Title" name="title" required style="width:50%;text-align:center;">
+  </div>
+  <div class="mb-3 d-flex justify-content-center">
+    <input type="text" class="form-control" placeholder="Url" name="url" required style="width:50%;text-align:center;">
+  </div>
+  <div class="mb-3 d-flex justify-content-center">
+    <input type="text" class="form-control" placeholder="Format" name="format" required style="width:50%;text-align:center;">
+  </div>
+  <div class="mb-3 d-flex justify-content-center">
+    <input type="number" class="form-control" placeholder="Year" name="year" required style="width:50%;text-align:center;">
+  </div>
+ <div class="mb-3 d-flex justify-content-center">
+    <input type="text" class="form-control" placeholder="Tags" name="tags" style="width:50%;text-align:center;">
+  </div>
+<div class="mb-3 d-flex justify-content-center">
+    <input type="text" class="form-control" placeholder="Teams" name="teams" style="width:50%;text-align:center;">
+  </div>
+  <div class="mb-3 d-flex justify-content-center">
+	  <textarea rows="3" class="form-control" placeholder="Description" name="description" style="width:50%;text-align:center;"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+
+<%- include("footer.ejs")%>

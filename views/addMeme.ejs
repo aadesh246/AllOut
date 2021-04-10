@@ -1,0 +1,16 @@
+<%- include("header.ejs")%>
+
+<div class="container" style="text-align:center;width:60%;">
+	<h2 class="heading">
+		Add New Memes
+	</h2>
+<form action="/memes" method="POST">
+  <div class="mb-3 d-flex justify-content-center">
+    <input type="text" class="form-control" placeholder="Url" name="url" required style="width:50%;text-align:center;">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+
+
+<%- include("footer.ejs")%>

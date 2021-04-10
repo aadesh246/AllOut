@@ -1,49 +1,132 @@
 <%- include("header.ejs")%>	
-
-<div class="container">
-	  
+<script>$('#6').css('background','#85D8CE');$('#6').css('border-radius','10px')</script>
+<style>button:focus{outline:none}</style>
+<div class="container" style="width:50%;text-align:center;">
+	 <h2 class="heading" style="padding-top:5px"> Memes <img loading="lazy" src="https://tse3.mm.bing.net/th?id=OIP.-_E9PoKBOA3dh3u91jtwbQHaEc&pid=Api&P=0&w=276&h=166" style="height:50px;width:80px;margin-left:0;"></h2>
+	<hr> 
   <div class="row">
-	  <div class="col-3">
 		  
-	  
-		<h2 class="heading text-start" style="padding-top:5px"> Memes<img src="https://tse3.mm.bing.net/th?id=OIP.-_E9PoKBOA3dh3u91jtwbQHaEc&pid=Api&P=0&w=276&h=166" style="height:50px;width:80px;"></h2>
+			<%memes.forEach(function(meme){%>
+			<div class="col-7 mb-5 me-2" style="border-right:2px solid rgba(200,200,200,0.5);">
+			  <img loading="lazy" src="<%=meme.url%>" style="height:300px;width:100%;border-radius:20px;box-shadow: 5px 5px 5px #888888;">
+			</div>
+	  <div class="col ms-2">
+		  <div>
+			  <button type="button"  style="border:none; background:none"data-bs-toggle="modal" data-bs-target="#like<%=meme._id%>"><span style="color:blue;"><i class="far fa-thumbs-up" style="height:20px;width:20px;"></i>(<%=meme.likes%>)</span></button>&nbsp;&nbsp;
+			  <button type="button"  style="border:none; background:none"data-bs-toggle="modal" data-bs-target="#love<%=meme._id%>">  <span style="color:red;"><i class="far fa-heart" style="height:20px;width:20px;"></i>(<%=meme.loves%>)</span></button> &nbsp; &nbsp;
+			  <button type="button"  style="border:none; background:none"data-bs-toggle="modal" data-bs-target="#comment<%=meme._id%>"> 	  <span style="color:black;"><i class="far fa-comment" style="height:20px;width:20px;"></i> Comment</span></button>
+		  </div>
+		  <hr>
+		  <div class="row" style="height:200px; overflow-y:auto">
+			  <%meme.comments.forEach(function(comment)
+									 {%>
+				  
+			
+			  <div class="col-3 px-1 mb-2">
+				  <img loading="lazy" src="https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg" style="height:40px;width:40px;border-radius:20px;text-align:start;"></div>
+			  <div class="col-9 mb-2" style="background:rgba(220,220,220,0.5);border-radius:15px;text-align:start;font-size:0.9rem;height:70px">
+				  <b><%=comment.author%></b>
+				  <p><%=comment.text%>
+					  </p>
+			  </div>
+			   <% })%>
+		  </div>
 	  </div>
+	  <hr>
+			<%})%>
 	</div>
-	<hr>
-    <div class="container">
-		<div class=row>
-			
-			<div class="card col-4" style="width:30%;margin-right:3%;margin-bottom:3%;margin-left:7px;">
-			  <img class="card-img-top" src="https://tse1.mm.bing.net/th?id=OIP.PE_4ykQxbxbDxmOKBOsy6wHaE6&pid=Api&P=0&w=237&h=158" alt="Card image cap" style="height:100%;">
-			</div>
-			<div class="card col-4" style="width:30%; margin-right:3%;margin-bottom:3%;">
-			  <img class="card-img-top" src="https://tse1.mm.bing.net/th?id=OIP.SxC2E_UfSRskCXqeZoc9JgHaFj&pid=Api&P=0&w=203&h=153" alt="Card image cap" style="height:100%">
-			</div>
-			
-			<div class="card col-4" style="width:30%;margin-right:3%;margin-bottom:3%;" >
-			  <img class="card-img-top" src="https://tse1.mm.bing.net/th?id=OIP.kxr5Ny2TTZn54ZcR66bTDgHaF5&pid=Api&P=0&w=194&h=155" alt="Card image cap" style="height:100%">
-			</div>
-			<div class="card col-4" style="width:30%;margin-right:3%;margin-bottom:3%;margin-left:7px;">
-			  <img class="card-img-top" src="https://tse1.mm.bing.net/th?id=OIP.PE_4ykQxbxbDxmOKBOsy6wHaE6&pid=Api&P=0&w=237&h=158" alt="Card image cap" style="height:100%">
-			</div>
-			<div class="card col-4" style="width:30%;margin-right:3%;margin-bottom:3%;">
-			  <img class="card-img-top" src="https://tse1.mm.bing.net/th?id=OIP.SxC2E_UfSRskCXqeZoc9JgHaFj&pid=Api&P=0&w=203&h=153" alt="Card image cap" style="height:100%">
-			</div>
-			
-			<div class="card col-4" style="width:30%;margin-right:3%;margin-bottom:3%;">
-			  <img class="card-img-top" src="https://tse1.mm.bing.net/th?id=OIP.kxr5Ny2TTZn54ZcR66bTDgHaF5&pid=Api&P=0&w=194&h=155" alt="Card image cap" style="height:100%">
-			</div>
-			<div class="card col-4" style="width:30%;margin-right:3%;margin-bottom:3%;margin-left:7px;">
-			  <img class="card-img-top" src="https://tse1.mm.bing.net/th?id=OIP.PE_4ykQxbxbDxmOKBOsy6wHaE6&pid=Api&P=0&w=237&h=158" alt="Card image cap" style="height:100%">
-			</div>
-			<div class="card col-4" style="width:30%;margin-right:3%;margin-bottom:3%;">
-			  <img class="card-img-top" src="https://tse1.mm.bing.net/th?id=OIP.SxC2E_UfSRskCXqeZoc9JgHaFj&pid=Api&P=0&w=203&h=153" alt="Card image cap" style="height:100%">
-			</div>
-			
-			<div class="card col-4" style="width:30%;margin-right:3%;margin-bottom:3%;">
-			  <img class="card-img-top" src="https://tse1.mm.bing.net/th?id=OIP.kxr5Ny2TTZn54ZcR66bTDgHaF5&pid=Api&P=0&w=194&h=155" alt="Card image cap" style="height:100%">
-			</div>
-		</div>
+</div>
+<%var x =-1; memes.forEach(function(meme){%>
+		<%x++%>
+<div class="modal" id="like<%=meme._id%>" tabindex="-1" style="margin-top:15%"aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add a Like</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+		<form action ="/memes/like/<%=meme._id%>" method="POST" onsubmit="return submitUserForm(<%=x%>,'<%=meme._id%>like');">
+		
+      <div class="modal-body">
+       	Add Your Name:-<input name ="name" type="text">
+		<div id="mydiv<%=x%>" class="mt-2" ></div>
+     <div id="<%=meme._id%>like"></div>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button submit" class="btn btn-primary">Like</button>
+			 </div></form>
     </div>
+  </div>
+</div>
+		<%x++%>
+<div class="modal" id="love<%=meme._id%>" tabindex="-1" style="margin-top:15%"aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add a Love</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+		 <form action ="/memes/love/<%=meme._id%>" method="POST" onsubmit="return submitUserForm(<%=x%>,'<%=meme._id%>love');">
+		
+      <div class="modal-body">
+       	Add Your Name:-<input name ="name" type="text">
+		<div id="mydiv<%=x%>" class="mt-2" ></div>
+     <div id="<%=meme._id%>love"></div>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button submit" class="btn btn-danger">Love</button>
+			 </div></form>
+    </div>
+  </div>
+</div>
 
+		<%x++%>
+<div class="modal" id="comment<%=meme._id%>" tabindex="-1" style="margin-top:15%"aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add a Comment</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+		<form action ="/memes/comment/<%=meme._id%>" method="POST" onsubmit="return submitUserForm(<%=x%>,'<%=meme._id%>comment');">
+		
+      <div class="modal-body">
+       	Add Your Name:-<input name ="name" type="text"><br><br>
+		Comment:-<br>
+		  <textarea name ="comment"maxlength=60 cols=40 rows=5></textarea>
+		<div id="mydiv<%=x%>" class="mt-2" ></div>
+     <div id="<%=meme._id%>comment"></div>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button submit" class="btn btn-success">Comment</button>
+			 </div></form>
+    </div>
+  </div>
+</div><%})%>
+
+<script>
+	
+	  var CaptchaCallback = function() {
+		  var x = <%-JSON.stringify(memes)%>;
+		  x=x.length;
+		  x=x*3;
+		  for(var i =0; i<x;i++)
+			  {
+                grecaptcha.render('mydiv'+i, {'sitekey' : '6LehEZkaAAAAAH4H3igyRG0qKalkIG7_GAcSz5d-'});}
+                 };
+function submitUserForm(x,id) {
+	
+    var response = grecaptcha.getResponse(x);
+	if(response.length == 0) {
+	alert('Please verify the captcha');
+
+         return false;
+    }
+    return true;
+}
+
+</script>
 <%- include("footer.ejs")%>	

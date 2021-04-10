@@ -1,0 +1,357 @@
+<%- include("header.ejs")%>
+<script>$('#1').css('background','#85D8CE');$('#1').css('border-radius','10px')</script>
+
+<style>
+   
+	a{
+	   text-decoration:none;
+	}
+	.oncrease{
+		border-left: 4px solid red;
+	}
+	.tab-pane.active:hover{background:none;}
+	.empty{
+		padding-left:20%;
+		padding-top:3%;
+		font-size:1.2rem;
+		font-style:italic;
+		color:red;
+	}
+</style>
+
+<div class="container" >
+	
+	<div class="row" style="margin-left:15%;width:70%" >
+<div class="card px-0" >
+	<div class="card-header">
+		<span style="color:#ff0000;margin-bottom:0;"><b>LIVE</b></span>
+		<span id ="title" style="font-weight:700;margin-left:35%;"></span>
+	</div>
+              <div class="card-body py-1">
+                <h6 id ="location" class="card-subtitle mb-2 text-muted text-center"></h6>
+				  <div class="container px-1">
+					  <div class="row">
+						  <div class="col-8 pe-2" style="border-right:2px solid #cccccc;">
+					  <div class="row pd-1">
+						  <div class="col ps-0 d-flex justify-content-start">
+							  &nbsp; <img src=""  id ="team1img" height=20 width=30>&nbsp;&nbsp;<b id ="team1"></b>
+						  </div>
+						  <div class="col d-flex justify-content-end">
+							  <span id="overs1"></span><b id="scor1"></b>
+						  </div>
+					  </div>
+					  <div class="row">
+						  <div class="col ps-0 d-flex justify-content-start">
+							  &nbsp; <img src ="" height=20 width=30 id="team2img">&nbsp;&nbsp;<b id="team2"></b>
+						  </div>
+						  <div class="col d-flex justify-content-end">
+							  <span id="overs2"></span><b id="scor2"></b>
+						  </div>
+					  </div>
+						  </div>
+						  <div class="col-2">
+							  <span class="text-muted" style="font-size:0.8rem;"></span>
+							  <p class="my-0" style="font-size:0.8rem;">
+								  <span id="onstrike">  </span>&nbsp;<span id="onstrike_score"></span>
+							  </p>
+							  <p class="my-0" style="font-size:0.8rem;">
+								 <span id="offstrike"> </span>&nbsp;<span id="offstrike_score"></span>
+							  
+							  </p>
+						  </div>
+						  <div class="col-2">
+							  <span class="text-muted" style="font-size:0.8rem;"></span>
+							  <p class="my-0" style="font-size:0.8rem;">
+								 <span id="currbowler">  </span>&nbsp;<span id="currbowler_figure"></span>
+							  							  </p>
+						  </div>
+					  </div>
+				  </div>
+				  <hr style="margin:0;">
+				  <p style="font-size:0.9rem;margin:3px 0 0 0;text-align:center;color:#ff0000;" id="status"></p>
+             
+   </div>
+</div>
+	</div>
+	<div class="list-group list-group-horizontal box5" id="list-tab" role="tablist" style="margin-left:15%;width:70%" >
+		<a class="list-group-item list-group-item-action  text-center"  href="/match/<%=id%>/commentary" role="tab" >Commentary
+		</a>
+      <a class="list-group-item list-group-item-action text-center active"   href="/match/<%=id%>/scorecard" role="tab">Scorecard
+		</a>
+	</div>
+	<br>
+	
+		<div id="whole" class="row">
+		<div class="col-4">
+			<div class="list-group box5" id="list-tab" role="tablist">
+			  <a class="list-group-item list-group-item-action active text-center" id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab" aria-controls="home" ><span id="tea1"></span> innings &nbsp;
+				</a>
+			  <a class="list-group-item list-group-item-action text-center" id="list-profile-list" data-bs-toggle="list" href="#list-profile" role="tab" aria-controls="profile"><span id="tea2"></span> innings &nbsp;
+				  </a>
+
+			</div>
+        </div>
+		<div class="col-8 box5 px-0 mt-2">
+			<div class="tab-content " id="nav-tabContent">
+      <div class="tab-pane show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+		 
+		  <h5 style="background:#808080;color:white;padding:5px;margin-bottom:0;"><span id="te1"></span> Innings<span style="margin-left:55%;"><span id="score1"></span> / <span id="w1"></span> (<span id="o1"></span> ov.)</span></h5>
+			<table class="table table-striped mb-2">
+				<thead class="table-dark" style="background:#D3D3D3">
+					<tr>
+						<th scope="col">Batsman</th>
+						<th scope="col"></th>
+						<th scope="col" style="padding-left:1.5%;">R</th>
+						<th scope="col" style="padding-left:1.5%;">B</th>
+						<th scope="col">4s</th>
+						<th scope="col">6s</th>
+						<th scope="col" style="padding-left:2%;">SR</th>
+					</tr>
+				</thead>
+  <tbody id="bat1">
+	  
+  </tbody>
+</table>
+
+		<div class="row">
+			<div class="col-6" style="padding-left:3%"><b>Extras</b></div>
+			<div class="col-6 d-flex justify-content-end" style="padding-right:3%;"><b><span id="extras1"></span></b> <span id="ext1"></span></div>
+		</div><hr class="my-2">
+		<div class="row">
+			<div class="col-6" style="padding-left:3%"><b>Total</b></div>
+			<div class="col-6 d-flex justify-content-end" style="padding-right:3%"><strong><span id="sc1"></span> /<span id="wic1"></span></strong> ( <span id="ov1"></span> overs)</div>
+		</div><hr class="my-2">
+
+
+
+		<div class="row">
+			<div class="col-3"style="padding-left:3%"><b>Fall Of Wickets</b></div><br><br>
+			<div id="fow1" class="col-9 text-muted" style="padding-left:3%"></div>
+		</div>
+			
+			<table class="table table-striped my-2">
+				<thead class="table-dark" style="background:#D3D3D3">
+					<tr>
+						<th scope="col">Bowler</th>
+						<th scope="col"></th>
+						<th scope="col"></th>
+						<th scope="col"></th>
+						<th scope="col"></th>
+						<th scope="col" style="padding-left:1.5%;">O</th>
+						<th scope="col">M</th>
+						<th scope="col">R</th>
+						<th scope="col">W</th>
+						<th scope="col" style="padding-left:2%;">Eco</th>
+					</tr>
+				</thead>
+  <tbody id="bowl1">
+    
+	</tbody>
+			</table>
+		 
+			
+	  </div>
+			
+      <div class="tab-pane show " id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+		  
+			<h5 style="background:#808080;color:white;padding:5px;margin-bottom:0;"><span id="te2"></span> Innings<span style="margin-left:55%;"><span id="score2"></span> / <span id="w2"></span> (<span id="o2"></span> ov.)</span></h5>
+			<table class="table table-striped mb-2">
+				<thead class="table-dark" style="background:#D3D3D3">
+					<tr>
+						<th scope="col">Batsman</th>
+						<th scope="col"></th>
+						<th scope="col" style="padding-left:1.5%;">R</th>
+						<th scope="col" style="padding-left:1.5%;">B</th>
+						<th scope="col">4s</th>
+						<th scope="col">6s</th>
+						<th scope="col" style="padding-left:2%;">SR</th>
+					</tr>
+				</thead>
+  <tbody id="bat2">
+    
+  </tbody>
+</table>
+
+		<div class="row">
+			<div class="col-6" style="padding-left:3%"><b>Extras</b></div>
+			<div class="col-6 d-flex justify-content-end" style="padding-right:3%;"><b><span id="extras2"></span></b><span id="ext2"></span></div>
+		</div><hr class="my-2">
+		<div class="row">
+			<div class="col-6" style="padding-left:3%"><b>Total</b></div>
+			<div class="col-6 d-flex justify-content-end" style="padding-right:3%"><strong><span id="sc2"></span>/<span id="wic2"></span></strong> (<span id="ov2"></span> overs)</div>
+		</div><hr class="my-2">
+
+
+
+		<div class="row">
+			<div class="col-3"style="padding-left:3%"><b>Fall Of Wickets</b></div><br><br>
+			<div id="fow2" class="col-9 text-muted" style="padding-left:3%"></div>
+		</div>
+			
+			<table class="table table-striped my-2">
+				<thead class="table-dark" style="background:#D3D3D3">
+					<tr>
+						<th scope="col">Bowler</th>
+						<th scope="col"></th>
+						<th scope="col"></th>
+						<th scope="col"></th>
+						<th scope="col"></th>
+						<th scope="col" style="padding-left:1.5%;">O</th>
+						<th scope="col">M</th>
+						<th scope="col">R</th>
+						<th scope="col">W</th>
+						<th scope="col" style="padding-left:2%;">Eco</th>
+					</tr>
+				</thead>
+  <tbody id="bowl2">
+    
+	</tbody>
+			</table>
+			
+	  </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	async function getScore()
+	{
+		var id = <%- JSON.stringify(id) %>;
+		const url = "https://moviebuff.run-ap-south1.goorm.io/match/"+id+"/api";
+		const response = await fetch("https://moviebuff.run-ap-south1.goorm.io/match/"+id+"/api"); 
+        const data = await response.json();
+		document.getElementById('title').innerText=data.title;
+		document.getElementById('location').innerText=data.location;
+	if(data.inning.length==0)
+		{
+			$("#team1").text(data.team1.name);
+			$("#team2").text(data.team2.name);
+			$("#team1img").attr("src",data.team1.image);
+			$("#team2img").attr("src",data.team2.image);
+		}
+		else{
+			$("#team1").text(data.inning[0].team); var x=1;
+			if(data.inning[0].team.trim()==data.team1.name.trim())
+			{$("#team1img").attr("src",data.team1.image);x=2;}
+		    else
+				$("#team1img").attr("src",data.team2.image);
+			if(x==2)
+				{
+					$("#team2").text(data.team2.name);
+					$("#team2img").attr("src",data.team2.image);								}
+			else
+				{
+					$("#team2").text(data.team1.name);
+					$("#team2img").attr("src",data.team1.image);
+				}
+			var z = data.inning[0].currentScore+'/'+data.inning[0].wickets;
+			$("#scor1").text(z);
+			
+			$("#overs1").text('('+data.inning[0].overs+')');
+			 if(data.inning.length>1)
+				 {
+					 	$("#team2").text(data.inning[1].team);
+			if(data.inning[1].team.trim()==data.team1.name.trim())
+			$("#team2img").attr("src",data.team1.image);
+		    else
+				$("#team2img").attr("src",data.team2.image);
+			$("#scor2").text(data.inning[1].currentScore+'/'+data.inning[1].wickets);
+			$("#overs2").text('('+data.inning[1].overs+')');
+		
+				 }if(data.inning[data.inning.length-1].onStrike)
+				{
+			$("#onstrike").text(data.inning[data.inning.length-1].onStrike.name);
+			$("#onstrike_score").text(data.inning[data.inning.length-1].onStrike.runs + '('+data.inning[data.inning.length-1].onStrike.ballsFaced+')');
+			$("#offstrike").text(data.inning[data.inning.length-1].offStrike.name);
+			$("#offstrike_score").text(data.inning[data.inning.length-1].offStrike.runs + '('+data.inning[data.inning.length-1].offStrike.ballsFaced+')');
+			$("#currbowler").text(data.inning[data.inning.length-1].currentBowler.name);
+			$("#currbowler_figure").text(data.inning[data.inning.length-1].currentBowler.runsConc +'/'+data.inning[data.inning.length-1].currentBowler.wickets+ '('+data.inning[data.inning.length-1].currentBowler.oversBowled+')');}
+		
+		}
+		$("#status").text(data.status);
+		
+		document.getElementById('tea1').innerText=data.team1.name;
+		document.getElementById('tea2').innerText=data.team2.name;
+		document.getElementById('te1').innerText=data.team1.name;
+		
+		
+		if(data.inning.length==0)
+			{
+				document.getElementById('whole').textContent="Match has not started yet....Stay Tuned!!";
+				var tag1=document.getElementById('whole');
+				tag1.classList.add("empty");
+			}
+		else{
+			
+			document.getElementById('score1').innerText=data.inning[0].currentScore;
+		    document.getElementById('w1').innerText=data.inning[0].wickets;
+			document.getElementById('o1').innerText=data.inning[0].overs;
+			document.getElementById('sc1').innerText=data.inning[0].currentScore;
+		    document.getElementById('wic1').innerText=data.inning[0].wickets;
+			document.getElementById('ov1').innerText=data.inning[0].overs;
+			var z1=data.inning[0].Wides;var z2=data.inning[0].Byes;var z3=data.inning[0].LegByes;var z4=data.inning[0].NoBalls;var z5=data.inning[0].Penalty;
+			var z=z1+z2+z3+z4+z5; 		document.getElementById('extras1').textContent=z;
+			document.getElementById('ext1').textContent='( w '+z1+',b '+z2+',lb '+z3+',nb '+z4+',p '+z5+')';
+			$('#bat1').text('');
+			data.inning[0].batsmen.forEach(function(bat){
+				var x;var z="";var l = (bat.runs/bat.ballsFaced)*100;l=l.toFixed(2);
+	
+				if(bat.isOut) x=bat.Out;else {x="batting";z="oncrease";}
+				
+				$('#bat1').append("<tr><th scope='row' class='"+z+"'><a href='#' >"+bat.name+"</a></th><td class='text-muted fst-italic'>"+x+"</td><td>"+bat.runs+"</td><td>"+bat.ballsFaced+"</td><td>"+bat.fours+"</td><td>"+bat.sixes+"</td><td>"+l+"</td></tr>");
+			})
+			$('#bowl1').text('');
+			data.inning[0].bowlers.forEach(function(bowl){
+				var k=(bowl.runsConc/bowl.oversBowled).toFixed(2);
+				$('#bowl1').append("<tr><th scope='row'><a href='#'>"+bowl.name+"</a></th><td></td><td></td><td></td><td></td><td>"+bowl.oversBowled+"</td><td>"+bowl.maidens+"</td><td>"+bowl.runsConc+"</td><td>"+bowl.wickets+"</td><td>"+k+"</td></tr>");
+			})
+			$('#fow1').text('');
+			data.inning[0].fallOfWickets.forEach(function(fow){
+				var x=""; 
+					x=",";
+				$('#fow1').append("<span>"+fow.run+"-"+fow.wicket+" ("+fow.over+","+fow.player+")"+x+"&nbsp;</span>");
+			});
+			if(data.inning.length==2){
+				document.getElementById('te2').
+		innerText=data.team2.name;
+			document.getElementById('score2').innerText=data.inning[1].currentScore;
+		    document.getElementById('w2').innerText=data.inning[1].wickets;
+			document.getElementById('o2').innerText=data.inning[1].overs;
+			document.getElementById('sc2').innerText=data.inning[1].currentScore;
+		    document.getElementById('wic2').innerText=data.inning[1].wickets;
+			document.getElementById('ov2').innerText=data.inning[1].overs;
+			var z1=data.inning[1].Wides;var z2=data.inning[1].Byes;var z3=data.inning[1].LegByes;var z4=data.inning[1].NoBalls;var z5=data.inning[1].Penalty;
+			var z=z1+z2+z3+z4+z5;
+			document.getElementById('extras2').textContent=z;
+			document.getElementById('ext2').textContent='( w '+z1+',b '+z2+',lb '+z3+',nb '+z4+',p '+z5+')';
+				$('#bat2').text('');
+			data.inning[1].batsmen.forEach(function(bat){
+				var x;var z="";var l = (bat.runs/bat.ballsFaced)*100;l=l.toFixed(2);
+				if(bat.isOut) x=bat.Out;else {x="batting";z="oncrease";}
+				$('#bat2').append("<tr><th scope='row' class='"+z+"'><a href='#' >"+bat.name+"</a></th><td class='text-muted fst-italic'>"+x+"</td><td>"+bat.runs+"</td><td>"+bat.ballsFaced+"</td><td>"+bat.fours+"</td><td>"+bat.sixes+"</td><td>"+l+"</td></tr>");
+						})
+				$('#bowl2').text('');
+			data.inning[1].bowlers.forEach(function(bowl){
+				var k=(bowl.runsConc/bowl.oversBowled).toFixed(2);
+				$('#bowl2').append("<tr><th scope='row'><a href='#'>"+bowl.name+"</a></th><td></td><td></td><td></td><td></td><td>"+bowl.oversBowled+"</td><td>"+bowl.maidens+"</td><td>"+bowl.runsConc+"</td><td>"+bowl.wickets+"</td><td>"+k+"</td></tr>");
+			})
+				$('#fow2').text('');
+				data.inning[1].fallOfWickets.forEach(function(fow){
+				var x="";
+					x=",";	
+				$('#fow2').append("<span>"+fow.run+"-"+fow.wicket+" ("+fow.over+","+fow.player+")"+x+"&nbsp;</span>");
+			})
+		}
+			else{
+				document.getElementById('list-profile').textContent="Innings has not started yet....Stay Tuned!!";
+				var tag=document.getElementById('list-profile');
+				tag.classList.add("empty");
+			}
+		}
+	}
+	getScore();
+	setInterval(getScore,3000);
+</script>
+
+<%- include("footer.ejs")%>

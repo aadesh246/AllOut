@@ -1,0 +1,28 @@
+<%- include("header.ejs")%>
+<div class="container">
+	
+
+<form action ="/addMatch" method="POST">
+	<input type="text" name="team1" required placeholder="Team 1">
+	<input type="text" name="team2" required placeholder="Team 2">
+	<input type="text" name="title" required placeholder="Match Title">
+	<br>
+<input type="text" name="date" required placeholder="Match Date">
+<input type="text" name="location" required placeholder="Match Location">
+<input type ="text" name ="team1img"required placeholder=" Team 1 image">
+<input type ="text" name ="team2img"required placeholder=" Team 2 image">
+<input type ="text" name ="matchimg"required placeholder=" Match image">
+	
+	
+	<select name="type">
+  <option value="1">Test</option>
+  <option value="2">ODI</option>
+  <option value="3">T20</option>
+</select>
+	<button type="submit">
+		Submit
+	</button>
+	
+</form>
+</div>
+<%- include("footer.ejs")%>

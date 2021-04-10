@@ -18,6 +18,11 @@
     border-radius: 100%;
     background: #1da1f2;
     border: 1px solid #1da1f2;
+	outline:none;
+}
+.ui-slider-handle:focus {
+    
+	outline:none;
 }
 
 .price-range-search {
@@ -33,11 +38,12 @@
 .price-range-field{
 
     height: 26px;
-    background-color:#202020; 
+    background-color:#085078; 
     border: 1px solid #6e6666; 
     color: #fff;
     font-size: 15px;
-    border-radius: 5px; 
+    border-radius: 20px; 
+	text-align:center;
     padding:5px;
 }
 .search-results-block{

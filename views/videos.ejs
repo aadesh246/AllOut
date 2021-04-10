@@ -1,4 +1,5 @@
 <%- include("header.ejs")%>
+<script>$('#vid').css('background','#85D8CE');$('#vid').css('border-radius','10px')</script>
 
 <meta charset ="utf-8">
 <meta name ="viewport" content ="width=device-width, initial-scale=1">
@@ -23,21 +24,18 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></scri
     <div class="container">
 	  
 		<div class="row">
-			<div class="col-6 p-0">
+			<div class="col-8 p-0">
 				  <h2 class="heading text-start" style="padding-top:5px"> Videos &nbsp; <span class="subtitle">- All cricket treasures at one place!</span></h2>
 			</div>
-			<div class="col-3">
-				
-			</div>
-			<div class="col-3">
+			<div class="col-4">
 				<div class="active-lime-3" style="padding-top:5px">
-					<form>
+					<form action="/videos/search" method="GET">
 					  <div class="p-1 bg-light rounded rounded-pill shadow-sm ">
 						<div class="input-group">
 							<div class="input-group-append">
 							  <button id="button-addon1" type="submit" class="btn btn-link text-primary"><i class="fa fa-search"></i></button>
 							</div>
-						  <input type="search" placeholder="What are you searching for?" aria-describedby="button-addon1" class="form-control border-0 bg-light">
+						  <input type="search" name="search" placeholder="What are you searching for?" aria-describedby="button-addon1" class="form-control border-0 bg-light">
 						</div>
 					  </div>
 					 </form>
@@ -55,32 +53,34 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></scri
 
 			<div class="row">
 
-				<div class="col-3 box p-0" style="margin-top:10px;">
+				<div class="col-3 box p-0" style="margin-top:10px;height:30%;">
+					<form action ="/videos/filter" method="GET">
+				
 				<div class="container" style="margin-top:10px">
-				  <!-- <div class="sliderId"> -->
+				 	 
+					
 					  <div class="row">
 						  <div class="col">
-							  <!-- style="padding-top:5px;margin-left:10px" -->
+							  
 							 <h4 class="text-start" style="padding-top:5px;" > Filters </h4>
 						  </div>
 						  <div class="col d-flex justify-content-end">
-							  <button type="button" class="btn btn-outline-primary">Apply</button>
+							  <button type="button submit" class="btn btn-outline-primary">Apply</button>
 							  
 						  </div>  
 					  </div>
 					<hr>
 					<nav class ="navbar navbar-light bg-light">
                      <h4>
-						 Duration
+						 Timeline
 					  </h4>
 					<div class="price-range-block" style="width:100%;margin-top:10px ">
 
 	<div  id="slider-range" class="price-filter-range" name="rangeInput"></div>
 
 	
-	  <input type="number" min="2000" max="2021" oninput="validity.valid||(value='2000');" id="min_price" class="price-range-field" />
-	  <input type="number" min="2000" max="2021" style="margin-left:100px" oninput="validity.valid||(value='2021');" id="max_price" class="price-range-field" />
-
+	  <input type="number" name ="minyear" min="2000" max="2021" oninput="validity.valid||(value='2000');" id="min_price" class="price-range-field"  />
+	  <input type="number" name ="maxyear"min="2000" max="2021" style="margin-left:100px" oninput="validity.valid||(value='2021');" id="max_price" class="price-range-field" />
 
 
 </div>
@@ -91,31 +91,31 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></scri
 				  </div>
 				
 				<div class="container">
-					<form>
+					
 						 <nav class ="navbar navbar-light bg-light">
 						  <h4> Format </h4>
 							<button type="button" class="collapsible"><i class="fa fa-plus" aria-hidden="true"></i></button>
 								<div class="content" style="width:100%">
 									<div class="row">
 										<div class="col-6">
-											<input type="checkbox"><label class="ms-2"> ICC</label>	<br>
-											<input type="checkbox"><label class="ms-2"> TESTs</label><br>
+											<input type="checkbox" name ="format" value="ICC" checked><label class="ms-2"> ICC</label>	<br>
+											<input type="checkbox" name="format" value="Test" checked><label class="ms-2"> TEST</label><br>
 										</div>
 										<div class="col-6">
-											<input type="checkbox"><label class="ms-2"> ODIs</label><br>
-											<input type="checkbox"><label class="ms-2"> T20s</label><br>	
+											<input type="checkbox" name="format" value = "ODI"checked><label class="ms-2"> ODI</label><br>
+											<input type="checkbox" name ="format" value="T20" checked><label class="ms-2"> T20</label><br>	
 										</div>
 									</div>
 							    </div>
 						</nav>
 
-					</form>
+					
 					<hr>
 				</div>
 				
 
 				<div class="container">
-					<form>
+					
 						 <nav class ="navbar navbar-light bg-light">
 					
 							<h4> Team</h4>
@@ -124,91 +124,64 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></scri
 					<div class="content" style="width:100%">
 						<div class="row">
 						<div class="col">
-							<input type="checkbox"><label class="ms-1"> India</label><br>
-							<input type="checkbox"><label class="ms-1"> England</label><br>
-							<input type="checkbox"><label class="ms-1"> West Indies</label><br>
-							<input type="checkbox" ><label class="ms-1"> Bangladesh</label><br>
-							<input type="checkbox"><label class="ms-1"> Afganistan</label><br>
-							<input type="checkbox"><label class="ms-1"> Zimbabwe</label>
+							<input type="checkbox" name ="team" value="India"checked><label class="ms-1"> India</label><br>
+							<input type="checkbox" name ="team" value="England"checked><label class="ms-1"> England</label><br>
+							<input type="checkbox" name ="team" value="West Indies"checked><label class="ms-1"> West Indies</label><br>
+							<input type="checkbox" name ="team" value="Bangladesh"checked ><label class="ms-1"> Bangladesh</label><br>
+							<input type="checkbox" name ="team" value="Afghanistan"checked><label class="ms-1"> Afghanistan</label><br>
+							<input type="checkbox" name ="team" value="Zimbabwe"checked><label class="ms-1"> Zimbabwe</label>
 						</div>
 						<div class="col">
-							<input type="checkbox"><label class="ms-1"> Australia</label><br>
+							<input type="checkbox" name ="team" value="Australia"checked><label class="ms-1"> Australia</label><br>
 
-							<input type="checkbox"><label class="ms-1"> New zealand</label><br>
+							<input type="checkbox" name ="team" value="New Zealand"checked><label class="ms-1"> New Zealand</label><br>
 
-							<input type="checkbox"><label class="ms-1"> Pakistan</label><br>
+							<input type="checkbox" name ="team"  value ="Pakistan"checked><label class="ms-1"> Pakistan</label><br>
 
-							<input type="checkbox"><label class="ms-1"> Sri lanka</label><br>
+							<input type="checkbox" name ="team" value="Sri Lanka"checked><label class="ms-1"> Sri Lanka</label><br>
 
-							<input type="checkbox"><label class="ms-1"> South africa</label><br>
+							<input type="checkbox" name ="team" value="South Africa"checked><label class="ms-1"> South Africa</label><br>
 
-							<input type="checkbox"><label class="ms-1"> Ireland</label>
+							<input type="checkbox" name ="team" value ="Ireland"checked><label class="ms-1"> Ireland</label>
 						</div>
 						</div>
 					</div>
 						</nav>
-					</form>
+					
 					<hr>
 				</div>
-                
+					</form>
 				</div>
 				<!-- <hr> -->
 
 				<!-- </div> -->
-				 <div class="col">
-					<div class="container box2" style="margin-top:10px;height:350px;">
-
-								<iframe style="width:100%;height:200px;margin-top:20px"
-								src="https://www.youtube.com/embed/tgbNymZ7vqY">
-								</iframe>
-						<h3>
-							Title
-						</h3>
-						<span>
-							Description
+				<div class="col my-2">
+					
+				<% videos.reverse();videos.forEach(function(video){%>
+				<div class="row each">
+				 <div class="col-8">
+					<iframe class="vid" style="width:100%;height:100%;"
+							src="<%=video.url%>" allowfullscreen></iframe></div>
+					<div class="col">
+						<h4>
+							<%=video.title%>
+						</h4>
+						<span class="text-muted">
+							<%=video.year%>
 						</span>
-						<p>
-							year
-						</p>
-
+						<div class="fst-italic">
+							<%=video.description%>
+						</div>
+					    <span class="text-muted" style="font-size:0.7rem;">Tags:</span>
+						<%video.tags.forEach(function(tag){%>
+						<span class="text-muted" style="font-size:0.7rem;"><%=tag%>,</span>
+						<%})%>
+						
+				    </div>
 					</div>
-				 </div>
-				 <div class="col">
-					<div class="container box2" style="margin-top:10px;height:350px;">
-
-								<iframe style="width:100%;height:200px;margin-top:20px"
-								src="https://www.youtube.com/embed/tgbNymZ7vqY">
-								</iframe>
-						<h3>
-							Title
-						</h3>
-						<span>
-							Description
-						</span>
-						<p>
-							year
-						</p>
-
-					</div>
-				 </div>
-				 <div class="col">
-					<div class="container box2" style="margin-top:10px;height:350px;">
-
-								<iframe style="width:100%;height:200px;margin-top:20px" 
-								src="https://www.youtube.com/embed/tgbNymZ7vqY">
-								</iframe>	
-						<h3>
-							Title
-						</h3>
-						<span>
-							Description
-						</span>
-						<p>
-							year
-						</p>
-
-					</div>
-				 </div>
+					<hr>
+				<%})%>
+				</div>
 			</div>
 		</div>
 			 
@@ -226,13 +199,20 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></scri
   overflow: hidden;
   background-color: #f1f1f1;
 }
+			 .each{
+				 height:18rem;
+			 }
+			 .vid{
+				 border-radius:15px;
+				 box-shadow: 0 4px 4px 4px rgba(100,100,100,0.5);
+			 }
 </style>
 
 
 <script>
 var coll = document.getElementsByClassName("collapsible");
 var i;
-
+	
 for (i = 0; i < coll.length; i++) {
   coll[i].addEventListener("click", function() {
     this.classList.toggle("active");

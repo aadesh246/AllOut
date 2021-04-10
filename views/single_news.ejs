@@ -1,0 +1,40 @@
+<%- include("header.ejs")%>
+<script>$('#4').css('background','#85D8CE');$('#4').css('border-radius','10px')</script>
+
+<style>.mai{
+	margin-left:20%;margin-right:20%;
+	}
+	@media only screen and (max-width: 600px) {
+		.mai{
+	margin-left:5%;margin-right:5%;
+	}
+	}
+</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <div class="mai">
+		<div class="row">
+			<div class="col-12">
+				<h5 >
+					<%=data.title%></h5>
+				<h6 class="text-muted">
+					<%=data.desc%>
+				</h6>
+				<i class='fas fa-calendar-alt' style='font-size:15px;'></i><span> <%=data.date%></span>
+			
+			    <hr>
+				
+					<img src ="<%=data.img%>" style =" width:100%; border-radius:20px;">
+				
+					<p style="margin-top:20px; line-height:30px" id="get" >
+						<%=data.news%>
+				</p>
+			</div>
+		</div>
+    </div>
+<script> var z = <%-JSON.stringify(data.news)%>;
+	$("#get").html(z);
+	
+	
+</script>
+<%- include("footer.ejs")%>

@@ -1,22 +1,47 @@
 <%- include("header.ejs")%>
+<script>$('#5').css('background','#85D8CE');$('#5').css('border-radius','10px')</script>
+
+<style>.tab-pane.active:hover{background:none;}
+	.ball{
+		height:30px;width:30px;
+	}
+	@media only screen and (max-width: 600px) {
+		.table{
+			font-size:0.55rem;
+		}
+		.list-group-item{
+			font-size:0.55rem;
+		}
+		.ball{
+			height:20px;width:20px;
+		}
+		.box4{
+			border-left:none;
+			border-right:none;
+			margin-top: 9%;
+			border-top: 2px solid #85D8CE;
+			border-bottom: 2px solid #85D8CE;
+		}
+	}
+</style>
 
 <div class="container">
 	<div class="row">
-  <div class="col-4">
+  <div class="col-lg-4">
     <div class="list-group box5">
       <a class="list-group-item list-group-item-action text-center" href="/ranking" >Tests &nbsp;
-		  <img src="https://www.rebelsport.com.au/dw/image/v2/BBRV_PRD/on/demandware.static/-/Sites-srg-internal-master-catalog/default/dwe3fa8393/images/45094401/Rebel_45094401_hi-res.jpg?sw=1000&sh=1000&sm=fit" style="height:30px;width:30px;border-radius:50px;">
+		  <img  class="ball" src="https://www.rebelsport.com.au/dw/image/v2/BBRV_PRD/on/demandware.static/-/Sites-srg-internal-master-catalog/default/dwe3fa8393/images/45094401/Rebel_45094401_hi-res.jpg?sw=1000&sh=1000&sm=fit" style="border-radius:50px;">
 		</a>
       <a class="list-group-item list-group-item-action text-center" href="/rankings_o">ODIs &nbsp;
-		  <img src="https://kdsport.com.au/images/detailed/0/kd-training-2p-white.jpg" style="height:30px;width:30px;border-radius:50px;">
+		  <img class="ball" src="https://kdsport.com.au/images/detailed/0/kd-training-2p-white.jpg" style="border-radius:50px;">
 		</a>
       <a class="list-group-item list-group-item-action active text-center" href="/rankings_t" >T20s &nbsp;
-		  <img src="http://www.crickettrainingballs.com.au/wp-content/uploads/2014/07/White-cricket-ball-4-piece.png" style="height:30px;width:30px;border-radius:50px;">
+		  <img class="ball" src="http://www.crickettrainingballs.com.au/wp-content/uploads/2014/07/White-cricket-ball-4-piece.png" style="border-radius:50px;">
 		</a>
 	
    </div>
   </div>
-  <div class="col-8">
+  <div class="col-lg-8">
 	<div class="list-group list-group-horizontal box5" id="list-tab" role="tablist">
       <a class="list-group-item list-group-item-action active text-center" id="list-bat-list" data-bs-toggle="list" href="#list-bat" role="tab" aria-controls="bat">Batsman
 		</a>
