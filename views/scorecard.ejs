@@ -1,7 +1,11 @@
 <%- include("header.ejs")%>
+<!-- <meta name="viewport" content="width=device-width,initial-scale=0.05"> -->
 <script>$('#1').css('background','#85D8CE');$('#1').css('border-radius','10px')</script>
 
 <style>
+	.ourscorecard{
+		margin-top:1%;
+	}
    
 	a{
 	   text-decoration:none;
@@ -17,15 +21,67 @@
 		font-style:italic;
 		color:red;
 	}
+	.pad{
+		padding-right:3%;
+	}
+	.above{
+		margin-left:15%;
+		width:70%;
+	}
+	.side{
+		font-size:0.7rem;
+		padding-left:3px;
+	}
+	#status{
+		font-size:0.9rem;
+	}
+	.shuffle{
+		width:70%;
+		margin-left:15%;
+	}
+	#title{
+		margin-left:30%;
+	}
+	
+	
+	@media only screen and (max-width: 600px) {
+		.table,.ext,.list-group-item{
+			font-size:0.6rem;
+		}
+		#location,#status{
+			font-size:0.7rem;
+		}
+		.above{
+			width:100%;
+			margin-left:0%;
+			font-size:0.6rem;
+		}
+		.side{
+			font-size:4.5px;
+			padding-left:2px;
+		}
+		.shuffle{
+			width:100%;
+			margin-left:0%;
+		}
+		#title{
+			margin-left:20%;
+		}
+		.ourscorecard{
+			margin-top:7%;
+		}
+		
+	}
+	
 </style>
 
 <div class="container" >
 	
-	<div class="row" style="margin-left:15%;width:70%" >
+	<div class="above row" >
 <div class="card px-0" >
 	<div class="card-header">
 		<span style="color:#ff0000;margin-bottom:0;"><b>LIVE</b></span>
-		<span id ="title" style="font-weight:700;margin-left:35%;"></span>
+		<span id ="title" style="font-weight:700;"></span>
 	</div>
               <div class="card-body py-1">
                 <h6 id ="location" class="card-subtitle mb-2 text-muted text-center"></h6>
@@ -49,31 +105,31 @@
 						  </div>
 					  </div>
 						  </div>
-						  <div class="col-2">
-							  <span class="text-muted" style="font-size:0.8rem;"></span>
-							  <p class="my-0" style="font-size:0.8rem;">
-								  <span id="onstrike">  </span>&nbsp;<span id="onstrike_score"></span>
+						  <div class="col-2 side">
+							  <span class="text-muted">Current Batsmen:-</span>
+							  <p class="my-0">
+								  <span id="onstrike"></span>&nbsp;<span id="onstrike_score"></span>
 							  </p>
-							  <p class="my-0" style="font-size:0.8rem;">
+							  <p class="my-0">
 								 <span id="offstrike"> </span>&nbsp;<span id="offstrike_score"></span>
 							  
 							  </p>
 						  </div>
-						  <div class="col-2">
-							  <span class="text-muted" style="font-size:0.8rem;"></span>
-							  <p class="my-0" style="font-size:0.8rem;">
+						  <div class="col-2 side">
+							  <span class="text-muted">Current Bowler:-</span>
+							  <p class="my-0">
 								 <span id="currbowler">  </span>&nbsp;<span id="currbowler_figure"></span>
 							  							  </p>
 						  </div>
 					  </div>
 				  </div>
 				  <hr style="margin:0;">
-				  <p style="font-size:0.9rem;margin:3px 0 0 0;text-align:center;color:#ff0000;" id="status"></p>
+				  <p style="margin:3px 0 0 0;text-align:center;color:#ff0000;" id="status"></p>
              
    </div>
 </div>
 	</div>
-	<div class="list-group list-group-horizontal box5" id="list-tab" role="tablist" style="margin-left:15%;width:70%" >
+	<div class="list-group list-group-horizontal box5 shuffle" id="list-tab" role="tablist">
 		<a class="list-group-item list-group-item-action  text-center"  href="/match/<%=id%>/commentary" role="tab" >Commentary
 		</a>
       <a class="list-group-item list-group-item-action text-center active"   href="/match/<%=id%>/scorecard" role="tab">Scorecard
@@ -82,7 +138,7 @@
 	<br>
 	
 		<div id="whole" class="row">
-		<div class="col-4">
+		<div class="col-lg-4">
 			<div class="list-group box5" id="list-tab" role="tablist">
 			  <a class="list-group-item list-group-item-action active text-center" id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab" aria-controls="home" ><span id="tea1"></span> innings &nbsp;
 				</a>
@@ -91,11 +147,11 @@
 
 			</div>
         </div>
-		<div class="col-8 box5 px-0 mt-2">
+		<div class="col-lg-8 box5 px-0 ourscorecard">
 			<div class="tab-content " id="nav-tabContent">
       <div class="tab-pane show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
 		 
-		  <h5 style="background:#808080;color:white;padding:5px;margin-bottom:0;"><span id="te1"></span> Innings<span style="margin-left:55%;"><span id="score1"></span> / <span id="w1"></span> (<span id="o1"></span> ov.)</span></h5>
+		  <h5 class="ext" style="background:#808080;color:white;padding:5px;margin-bottom:0;"><span id="te1"></span> Innings<span style="margin-left:55%;"><span id="score1"></span> / <span id="w1"></span> (<span id="o1"></span> ov.)</span></h5>
 			<table class="table table-striped mb-2">
 				<thead class="table-dark" style="background:#D3D3D3">
 					<tr>
@@ -113,18 +169,18 @@
   </tbody>
 </table>
 
-		<div class="row">
+		<div class="row ext">
 			<div class="col-6" style="padding-left:3%"><b>Extras</b></div>
-			<div class="col-6 d-flex justify-content-end" style="padding-right:3%;"><b><span id="extras1"></span></b> <span id="ext1"></span></div>
+			<div class="col-6 d-flex justify-content-end pad"><b><span id="extras1"></span></b> <span id="ext1"></span></div>
 		</div><hr class="my-2">
-		<div class="row">
+		<div class="row ext">
 			<div class="col-6" style="padding-left:3%"><b>Total</b></div>
-			<div class="col-6 d-flex justify-content-end" style="padding-right:3%"><strong><span id="sc1"></span> /<span id="wic1"></span></strong> ( <span id="ov1"></span> overs)</div>
+			<div class="col-6 d-flex justify-content-end pad"><strong><span id="sc1"></span> /<span id="wic1"></span></strong> ( <span id="ov1"></span> overs)</div>
 		</div><hr class="my-2">
 
 
 
-		<div class="row">
+		<div class="row ext">
 			<div class="col-3"style="padding-left:3%"><b>Fall Of Wickets</b></div><br><br>
 			<div id="fow1" class="col-9 text-muted" style="padding-left:3%"></div>
 		</div>
@@ -154,7 +210,7 @@
 			
       <div class="tab-pane show " id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
 		  
-			<h5 style="background:#808080;color:white;padding:5px;margin-bottom:0;"><span id="te2"></span> Innings<span style="margin-left:55%;"><span id="score2"></span> / <span id="w2"></span> (<span id="o2"></span> ov.)</span></h5>
+			<h5 class="ext" style="background:#808080;color:white;padding:5px;margin-bottom:0;"><span id="te2"></span> Innings<span style="margin-left:55%;"><span id="score2"></span> / <span id="w2"></span> (<span id="o2"></span> ov.)</span></h5>
 			<table class="table table-striped mb-2">
 				<thead class="table-dark" style="background:#D3D3D3">
 					<tr>
@@ -172,18 +228,18 @@
   </tbody>
 </table>
 
-		<div class="row">
+		<div class="row ext">
 			<div class="col-6" style="padding-left:3%"><b>Extras</b></div>
 			<div class="col-6 d-flex justify-content-end" style="padding-right:3%;"><b><span id="extras2"></span></b><span id="ext2"></span></div>
 		</div><hr class="my-2">
-		<div class="row">
+		<div class="row ext">
 			<div class="col-6" style="padding-left:3%"><b>Total</b></div>
 			<div class="col-6 d-flex justify-content-end" style="padding-right:3%"><strong><span id="sc2"></span>/<span id="wic2"></span></strong> (<span id="ov2"></span> overs)</div>
 		</div><hr class="my-2">
 
 
 
-		<div class="row">
+		<div class="row ext">
 			<div class="col-3"style="padding-left:3%"><b>Fall Of Wickets</b></div><br><br>
 			<div id="fow2" class="col-9 text-muted" style="padding-left:3%"></div>
 		</div>

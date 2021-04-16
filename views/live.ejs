@@ -1,8 +1,38 @@
 <%- include("header.ejs")%>
 <script>$('#2').css('background','#85D8CE');$('#2').css('border-radius','10px')</script>
 <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+<%function compare( a, b ) { var a_date,b_date;
+	if(a.date.indexOf('-')!=-1)
+		{
+		  var res = a.date.split('-');
+		  a_date = res[1];
+		}
+							else a_date = a.date;
+	if(b.date.indexOf('-')!=-1)
+		{
+		  var res = b.date.split('-');
+		  b_date = res[1];
+		}
+							else b_date = b.date;
+	
+	    a_date = new Date(a_date);
+							b_date = new Date(b_date);
+							a_date.setFullYear(2021);
+							b_date.setFullYear(2021);
+		
+  if ( a_date > b_date ){
+    return -1;
+  }
+  if ( a_date < b_date ){
+    return 1;
+  }
+  return 0;
+}
 
+data.sort( compare );
+%>
 <style>
+	
 body { font-family: sans-serif; }
 	
 /* results */
@@ -70,7 +100,6 @@ background: linear-gradient(to right, #85D8CE, #085078);
   height: 200px;
   margin-right: 10px;
 	
-  background: #8C8;
   border-radius: 5px;
   counter-increment: carousel-cell;
 }
@@ -81,6 +110,7 @@ background: linear-gradient(to right, #85D8CE, #085078);
 .card
 	{
 		height:100%;
+		overflow-y:scroll;
 	}
 /* cell number */
 .carousel-cell:before {
@@ -90,6 +120,17 @@ background: linear-gradient(to right, #85D8CE, #085078);
   font-size: 80px;
   color: white;
 }
+	@media only screen and (min-width:700px) and (max-width: 1000px) {
+		.carousel-cell {
+			width:40%;
+			height:200px;
+			font-size:0.65rem;
+			
+		}
+		h6{
+			 font-size:0.80rem;
+		 }
+	}
 	
 	 @media only screen and (max-width: 600px) {
 		  .carousel-cell {
@@ -102,9 +143,9 @@ background: linear-gradient(to right, #85D8CE, #085078);
 	    }
 		 .hello{
 			 width:100%;
-			 font-size:0.90rem;
+			 /* font-size:0.90rem; */
 		 }
-		 .description,.stadium{
+		 .description,.stadium,.results{
 			 font-size:0.75rem;
 		 }
 		 .hello1{
@@ -112,8 +153,9 @@ background: linear-gradient(to right, #85D8CE, #085078);
 			 width:25px;
 		 }
 		 .teams,.score{
-			 font-size:20px;
+			 font-size:0.9rem;
 		 }
+		 
 	}	
 	
 	
@@ -126,7 +168,7 @@ background: linear-gradient(to right, #85D8CE, #085078);
 		<%for(var i =1; i<=8;i++){%>
   <div class="carousel-cell " id="<%=i%>"><div class="card" >
 				<div class="card-header ">
-					<h6 id ="tour<%=i%>" style="font-weight:700">
+					<h6 id ="tour<%=i%>" >
 					
 						</h6>
 				</div>
@@ -248,13 +290,42 @@ background: linear-gradient(to right, #85D8CE, #085078);
 			 document.getElementById('img1'+(i+1)).style.display="none";
 			  document.getElementById('img2'+(i+1)).style.display="none";
 					 
-				 }			 
-			}
+				 }
+			 if(arr[i].tour.trim()=='Indian Premier League 2021')
+				 {
+					 var  iplobj ={"Kolkata Knight Riders":"KKR","Mumbai Indians":"MI","Delhi Capitals":"DC","Punjab Kings":"PBKS","Chennai Super Kings":"CSK","Rajasthan Royals":"RR","Sunrisers Hyderabad":"SRH","Royal Challengers Bangalore":"RCB"};	
+				 console.log(arr[i].team1,arr[i].team2);
+			 var img1 = iplobj[arr[i].team1]; var img2 = iplobj[arr[i].team2];	
+if(!img1)
+{
+	var objipl = {"KKR":"Kolkata Knight Riders","MI":"Mumbai Indians","DC":"Delhi Capitals","PBKS":"Punjab Kings","CSK":"Chennai Super Kings","RR":"Rajasthan Royals","SRH":"Sunrisers Hyderabad","RCB":"Royal Challengers Bangalore"};
+	img1= arr[i].team1.toLowerCase();
+	
+}
+			 if(!img2)
+				 {
+					 var objipl = {"KKR":"Kolkata Knight Riders","MI":"Mumbai Indians","DC":"Delhi Capitals","PBKS":"Punjab Kings","CSK":"Chennai Super Kings","RR":"Rajasthan Royals","SRH":"Sunrisers Hyderabad","RCB":"Royal Challengers Bangalore"};
+	img2= arr[i].team2.toLowerCase();
+	
+				 } img1 = img1.toLowerCase();
+					 img2 = img2.toLowerCase();
+					  document.getElementById('img1'+(i+1)).style.display="inline";
+			  document.getElementById('img2'+(i+1)).style.display="inline";
+				 document.getElementById('team1'+(i+1)).innerText = img1.toUpperCase();
+			 document.getElementById('team2'+(i+1)).innerText = img2.toUpperCase();
+		
+					document.getElementById('img1'+(i+1)).setAttribute("src","http://moviebuff.run-ap-south1.goorm.io/"+img1+".png");
+			  document.getElementById('img2'+(i+1)).setAttribute("src","http://moviebuff.run-ap-south1.goorm.io/"+img2+".png");
+			 
+			}}
 	 for(var i =arr.length+1;i<=8;i++)
 		 document.getElementById(i).style.display="none";
  }
 	 
       getISS();
-setInterval(getISS,3000);</script>
+	
+setInterval(getISS,3000);
+	
+</script>
 
 <%- include("footer.ejs")%>

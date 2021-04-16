@@ -1,20 +1,54 @@
 <%- include("header.ejs")%>	
 <script>$('#6').css('background','#85D8CE');$('#6').css('border-radius','10px')</script>
+<style>.bc{
+	width:50%;
+	}
+	.author{
+		height:40px;width:40px;border-radius:20px;
+	}
+	.cmt{
+		font-size:0.9rem;
+		height:70px;
+	}
+	@media only screen and (max-width: 600px) {
+		.bc{
+			width:100%
+		}
+		#comment{
+			display:none
+		}
+		.author
+		{
+			height:20px;width:20px;border-radius:10px;
+		}
+		#b1{
+			font-size:0.9rem;
+		}
+		#p1
+		{
+			font-size:0.7rem;
+			margin-bottom:none;
+		}
+		.cmt{
+			height:60px;
+		}
+	}
+</style>
 <style>button:focus{outline:none}</style>
-<div class="container" style="width:50%;text-align:center;">
+<div class="container bc" style="">
 	 <h2 class="heading" style="padding-top:5px"> Memes <img loading="lazy" src="https://tse3.mm.bing.net/th?id=OIP.-_E9PoKBOA3dh3u91jtwbQHaEc&pid=Api&P=0&w=276&h=166" style="height:50px;width:80px;margin-left:0;"></h2>
 	<hr> 
   <div class="row">
 		  
 			<%memes.forEach(function(meme){%>
-			<div class="col-7 mb-5 me-2" style="border-right:2px solid rgba(200,200,200,0.5);">
+			<div class="col-8 mb-5 me-md-2" style="border-right:2px solid rgba(200,200,200,0.5);">
 			  <img loading="lazy" src="<%=meme.url%>" style="height:300px;width:100%;border-radius:20px;box-shadow: 5px 5px 5px #888888;">
 			</div>
-	  <div class="col ms-2">
+	  <div class="col ms-md-2">
 		  <div>
 			  <button type="button"  style="border:none; background:none"data-bs-toggle="modal" data-bs-target="#like<%=meme._id%>"><span style="color:blue;"><i class="far fa-thumbs-up" style="height:20px;width:20px;"></i>(<%=meme.likes%>)</span></button>&nbsp;&nbsp;
 			  <button type="button"  style="border:none; background:none"data-bs-toggle="modal" data-bs-target="#love<%=meme._id%>">  <span style="color:red;"><i class="far fa-heart" style="height:20px;width:20px;"></i>(<%=meme.loves%>)</span></button> &nbsp; &nbsp;
-			  <button type="button"  style="border:none; background:none"data-bs-toggle="modal" data-bs-target="#comment<%=meme._id%>"> 	  <span style="color:black;"><i class="far fa-comment" style="height:20px;width:20px;"></i> Comment</span></button>
+			  <button type="button"  style="border:none; background:none"data-bs-toggle="modal" data-bs-target="#comment<%=meme._id%>"> 	  <span style="color:black;"><i class="far fa-comment" style="height:20px;width:20px;"></i>(<%=meme.comments.length%>)</span></button>
 		  </div>
 		  <hr>
 		  <div class="row" style="height:200px; overflow-y:auto">
@@ -22,11 +56,9 @@
 									 {%>
 				  
 			
-			  <div class="col-3 px-1 mb-2">
-				  <img loading="lazy" src="https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg" style="height:40px;width:40px;border-radius:20px;text-align:start;"></div>
-			  <div class="col-9 mb-2" style="background:rgba(220,220,220,0.5);border-radius:15px;text-align:start;font-size:0.9rem;height:70px">
-				  <b><%=comment.author%></b>
-				  <p><%=comment.text%>
+			  <div class="cmt mb-2" style="background:rgba(220,220,220,0.5);border-radius:15px;text-align:start;">
+				  <b id='b1'><%=comment.author%></b>
+				  <p id='p1'class='mt-1'><%=comment.text%>
 					  </p>
 			  </div>
 			   <% })%>

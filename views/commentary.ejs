@@ -1,6 +1,11 @@
 <%- include("header.ejs")%>
+<!-- <meta name="viewport" content="width=device-width,initial-scale=0.05"> -->
+
 <script>$('#1').css('background','#85D8CE');$('#1').css('border-radius','10px')</script>
 <style>
+	.ourcommentary{
+		width:60%;
+	}
 	.comment{
 		border: 1px solid #ebebe0;
 		box-shadow: 0 4px 8px 4px rgba(0,0,0,0.2);
@@ -18,15 +23,63 @@
 	.six{
 		background:#009900;border-radius:20px;color:white; height:35px;
 	}
+	.lastover,.present{
+		font-size:1.2rem;
+	}
+	.above{
+		margin-left:15%;
+		width:70%;
+	}
+	.side{
+		font-size:0.7rem;
+		padding-left:3px;
+	}
+	#status{
+		font-size:0.9rem;
+	}
+	.shuffle{
+		width:70%;
+		margin-left:15%;
+	}
+	#title{
+		margin-left:30%;
+	}
+	
+	
+	@media only screen and (max-width: 600px) {
+		.list-group-item{
+			font-size:0.6rem;
+		}
+		#location,#status,.lastover,.present{
+			font-size:0.7rem;
+		}
+		.above,.ourcommentary{
+			width:100%;
+			margin-left:0%;
+			font-size:0.6rem;
+		}
+		.side{
+			font-size:4.5px;
+			padding-left:2px;
+		}
+		.shuffle{
+			width:100%;
+			margin-left:0%;
+		}
+		#title{
+			margin-left:20%;
+		}
+		
+	}
 </style>
 
 <!-- ----------- -->
-<div class="container" style="width:60%;">
-	<div class="row">
+<div class="container">
+	<div class="above row">
 <div class="card px-0" >
 	<div class="card-header">
 		<span style="color:#ff0000;margin-bottom:0;"><b>LIVE</b></span>
-		<span id ="title" style="font-weight:700;margin-left:35%;"></span>
+		<span id ="title" style="font-weight:700;"></span>
 	</div>
               <div class="card-body py-1">
                 <h6 id ="location" class="card-subtitle mb-2 text-muted text-center"></h6>
@@ -50,47 +103,45 @@
 						  </div>
 					  </div>
 						  </div>
-						  <div class="col-2">
-							  <span class="text-muted" style="font-size:0.8rem;"></span>
-							  <p class="my-0" style="font-size:0.8rem;">
+						  <div class="col-2 side">
+							  <span class="text-muted">Current Batsmen:-</span>
+							  <p class="my-0">
 								  <span id="onstrike">  </span>&nbsp;<span id="onstrike_score"></span>
 							  </p>
-							  <p class="my-0" style="
-													 
-													 font-size:0.8rem;">
+							  <p class="my-0">
 								 <span id="offstrike"> </span>&nbsp;<span id="offstrike_score"></span>
 							  
 							  </p>
 						  </div>
-						  <div class="col-2">
-							  <span class="text-muted" style="font-size:0.8rem;"></span>
-							  <p class="my-0" style="font-size:0.8rem;">
+						  <div class="col-2 side">
+							  <span class="text-muted">Current Bowler:-</span>
+							  <p class="my-0">
 								 <span id="currbowler">  </span>&nbsp;<span id="currbowler_figure"></span>
 							  							  </p>
 						  </div>
 					  </div>
 				  </div>
 				  <hr style="margin:0;">
-				  <p style="font-size:0.9rem;margin:3px 0 0 0;text-align:center;color:#ff0000;" id="status"></p>
+				  <p style="margin:3px 0 0 0;text-align:center;color:#ff0000;" id="status"></p>
              
    </div>
 </div>
 	</div>
-</div>
-	<div class="list-group list-group-horizontal box5" id="list-tab" role="tablist" style="width:60%;margin-left:20%;">
-		<a class="list-group-item list-group-item-action  text-center active"  href="/match/<%=id%>/commentary" role="tab" >Commentary
+
+	<div class="list-group list-group-horizontal box5 shuffle" id="list-tab" role="tablist" >
+		<a class="list-group-item list-group-item-action  text-center active"  href="/match/<%=id%>/commentary" role="tab">Commentary
 		</a>
       <a class="list-group-item list-group-item-action text-center "   href="/match/<%=id%>/scorecard" role="tab">Scorecard
 		</a>
 	</div>
 	
 <!-- commentary	 -->
-<div class="container" style="width:60%;">	
+<div class="container ourcommentary">	
 	<div id="main" class="row comment my-5">
 		
 		
 	</div>
-	
+</div>
 </div>
 <script>
    async function getISS()
@@ -160,7 +211,7 @@
 								   { console.log("HI");
 									var over =  (data.inning[data.inning.length-1].overs-1);
 									
-							$('#main').append("<div class='col-1 py-2' style='background:#0033cc;color:white;'><span></span></div><div class='col py-2' style='background:#0033cc;color:white;font-size:1.2rem;'><span class='lastover'>Last Over: "+ball.overRuns+" runs</span></div><div class='col py-2'  style='background:#0033cc;color:white;font-size:1.2rem;' ><span class='present'>"+data.inning[data.inning.length-1].team+" - "+ball.overScore+"</span></div><hr class='m-0' style='color:#bfbfbf;'>");	 rns =0;    
+							$('#main').append("<div class='col-1 py-2' style='background:#0033cc;color:white;'><span></span></div><div class='col py-2' style='background:#0033cc;color:white;'><span class='lastover'>Last Over: "+ball.overRuns+" runs</span></div><div class='col py-2'  style='background:#0033cc;color:white;' ><span class='present'>"+data.inning[data.inning.length-1].team+" - "+ball.overScore+"</span></div><hr class='m-0' style='color:#bfbfbf;'>");	 rns =0;    
 								   }
 								else{rns+=ball.runs;
 								if(ball.desc.includes("W"))cl = 'wicket'; else if(ball.runs==6)cl= 'six'; else if(ball.runs==4)cl='four'; else cl='run'; var runs;if(cl=='wicket')runs ='OUT';else if(ball.runs==1)runs = ball.runs +' run';else runs = ball.runs+' runs';

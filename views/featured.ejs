@@ -2,57 +2,108 @@
 <script>$('#1').css('background','#85D8CE');$('#1').css('border-radius','10px')</script>
 <style>
 	body { font-family: sans-serif; }
-.title{
-		box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-		background: #000033;
-		color: white;
-		padding: 2px 15px;
-		border-radius: 8px;
-	}
-	
-	.results .format,.col-4,.col{
-		border-right: 2px solid rgba(224,224,209);
-	}
-	
-	.description,.stadium{
-		font-size: 0.9rem;
-		font-style: italic;
-		font-weight: bold;
-	
-	}
-	.results .col-4,.col{
-		padding-left: 20px;
-	}
-	.date{
-		padding-top: 15px;
-		font-size: 0.9rem;
-		/* font-weight: lighter; */
-		color:#b3b3b3;
-	}
-	.teams,.score{
-		font-weight: bold;
-		font-size: 1.5rem;
-	}
-	.score{
-		color:#666666;
-	}
-	.results .col img{
-		height:auto;
-	}
-	
-	.results row{
-		padding-bottom: 2px solid rgba(224,224,209);
-	}
 	
 	
+	.title{
+			box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+			background: #000033;
+			color: white;
+			padding: 2px 15px;
+			border-radius: 8px;
+		}
+
+		.format,.col-lg-4,.col-lg{
+			border-right: 2px solid rgba(224,224,209);
+		}
+
+		.description,.stadium{
+			font-size: 0.9rem;
+			font-style: italic;
+			font-weight: bold;
+
+		}
+		.result,.col-lg-4,.col-lg{
+			padding-left: 20px;
+		}
+		.date{
+			padding-top: 15px;
+			font-size: 0.9rem;
+			/* font-weight: lighter; */
+			color:#b3b3b3;
+		}
+		.teams,.score{
+			font-weight: bold;
+			font-size: 1.5rem;
+		}
+		.score{
+			color:#666666;
+		}
+		.result, .col-lg img{
+			height:auto;
+		}
+
+		.result, row{
+			padding-bottom: 2px solid rgba(224,224,209);
+		}
 	
-	@media only screen and (max-width: 600px) {
-		.title,.description,.stadium,.date,.status,.teams,.score,.btn
+	
+	@media only screen and (min-width: 700px) and (max-width: 1000px) {
+		
+	    	.title,.description,.stadium,.date
         {
-			font-size:0.9rem;
+			font-size:1rem;
+			text-align:center;
+		}
+		.teams,.score{
+			font-size:1rem;
+		}
+		.flag{
+			margin-left:37%;
 		}
 		.format{
-			margin-bottom:5%;
+			margin-bottom:3%;
+		}
+		.result{
+			font-size:1rem;
+			margin-left:37%;
+		}
+		.flag1{
+			margin-top:3%;
+		}
+		.flag2{
+			margin-bottom:1%;
+		}
+	}
+	
+	@media only screen and (max-width: 600px) {
+		
+		.title,.description,.stadium,.date
+        {
+			font-size:0.9rem;
+			text-align:center;
+		}
+		.teams,.score{
+			font-size:0.9rem;
+		}
+		.flag{
+			margin-left:26%;
+		}
+		.format{
+			margin-bottom:3%;
+		}
+		.result{
+			font-size:0.9rem;
+			margin-left:23%;
+		}
+		.flag1{
+			margin-top:3%;
+		}
+		.flag2{
+			margin-bottom:1%;
+		}
+		.go{
+			font-size:0.7rem;
+			padding:5px 6px;
 		}
 	}
 </style>
@@ -94,7 +145,7 @@
 					z+='/';
 					z+=mat.inning[1].wickets;z+='(';z+=mat.inning[1].overs;z+=')';
 				}
-			$('#match').append("<div class='row my-3'><div class='col-lg-2 d-flex justify-content-center align-items-center format'><span class='title'>"+x+"</span></div><div class='col-lg-4'><div class='description'><span>"+mat.title+"</span></div><div class ='stadium'><span>"+mat.location+"</span></div><div class='date'><span>"+mat.date+"</span></div></div><div class='col-lg'><span class='result'>"+mat.status+"</span><div><img src='"+mat.team1.image+"' style='height:30px;width:35px;'>&nbsp;<span class='teams'>"+mat.team1.name+"</span>&nbsp;<span class='score'>"+y+"</span></div><div class='mt-0'><img src='"+mat.team2.image+"' style='height:30px;width:35px;'>&nbsp;<span class='teams'>"+mat.team2.name+"</span>&nbsp;<span class='score'>"+z+"</span></div></div><div class='col-lg-2 d-flex justify-content-center align-items-center'><a href='/match/"+mat._id+"/commentary'><button type='button' class='btn btn-outline-primary'>Go to Match</button></a></div></div><hr>")
+			$('#match').append("<div class='row my-3'><div class='col-lg-2 d-flex justify-content-center align-items-center format'><span class='title'>"+x+"</span></div><div class='col-lg-4'><div class='description'><span>"+mat.title+"</span></div><div class ='stadium'><span>"+mat.location+"</span></div><div class='date'><span>"+mat.date+"</span></div></div><div class='col-lg'><span class='result'>"+mat.status+"</span><div class='flag flag1'><img src='"+mat.team1.image+"' style='height:30px;width:35px;'>&nbsp;<span class='teams'>"+mat.team1.name+"</span>&nbsp;<span class='score'>"+y+"</span></div><div class='mt-0 flag flag2'><img src='"+mat.team2.image+"' style='height:30px;width:35px;'>&nbsp;<span class='teams'>"+mat.team2.name+"</span>&nbsp;<span class='score'>"+z+"</span></div></div><div class='col-lg-2 d-flex justify-content-center align-items-center'><a href='/match/"+mat._id+"/commentary'><button type='button' class='btn btn-outline-primary go'>Go to Match</button></a></div></div><hr>")
 		})
 	}
 	getMatch();

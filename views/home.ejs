@@ -64,10 +64,57 @@
 			height:60px; width:60px; 
 		}
 	
+		@media only screen and (min-width: 700px) and (max-width: 1000px) {
+			.carousel-cell {
+				width:30%;
+				height:130px;
+			}
+			.team{
+				font-size:20px;
+			}
+			.main_players{
+				font-size:12px;
+			}
+
+			.teamimg{
+				width:30px;
+				height:30px;
+			}
+			.players{
+				height:70px;
+				width:70px;
+				border-radius:50px;
+				box-shadow:4px 4px 4px 4px rgba(200,200,200,0.5);
+			}
+			.ball{
+				height:25px;width:25px;border-radius:20px;
+			}
+			.icon{
+				height:45px;width:45px;
+			}
+			.format{
+				font-size:0.9rem;
+				text-align:center;
+			}
+			.alert{
+				padding:2%;
+
+			}
+			h6,.hiii,.detail{
+				font-size:12px;
+			}
+			.heading{
+				font-size:20px;
+			}
+			
+		
+		}
+		
+		
     @media only screen and (max-width: 600px) {
 		  .carousel-cell {
 			width:90%;
-			  
+			height:110px;
 		  }
 		.rankings{
 			margin-top:10px;
@@ -109,7 +156,7 @@
 			padding:2%;
 	
 		}
-		h6{
+		h6,.hiii,.detail{
 			font-size:12px;
 		}
 		.news{
@@ -126,6 +173,7 @@
 		}	
 
 </style>
+
 	<div class="carousel" id="main"data-flickity='{ "groupCells": true ,"cellAlign":"left","wrapAround":"true"}'>
 		<%for(var i =1; i<=8;i++){%>
   <div class="carousel-cell mb-3 " id="<%=i%>"><div class="card" >
@@ -167,7 +215,7 @@
 				<div class="col" id="temp"style="display:none">
 				</div>
 				<div class="col-sm-3 news">
-					<div class="container box">
+					<div class="container box hiii">
 						<h3 class="heading">What's Hot!!</h3>
 						<%data.forEach(function(news){%>
 						<a href="/single-news/<%=news.href%>"><p class="first-one">
@@ -182,14 +230,14 @@
 						<div class="row p-1 pt-sm-4">
 							<div class=" col-4 ">
 								<img class="teamimg" style ="border-radius:10px;"src = "https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Flag_of_India.svg/1200px-Flag_of_India.svg.png"><span class="team"> India</span> <br><br>
-								<ul class="mt-sm-2 text-start main_players" >
+								<ul class="text-start main_players" >
 									<li>Virat Kohli(c)</li>
 									<li>Ajinkya Rahane</li>
 									<li>Jasprit Bumrah</li>
 									
 								</ul>
 							</div>
-							<div class =" col-4 mt-sm-2 text-center">
+							<div class =" col-4 mt-sm-2 text-center detail">
 								<span class="team">Vs</span>
 								<br><br>
 								<a href ="#" style="font-size:1.2rem;">Live</a>
@@ -200,9 +248,9 @@
 								<span class="ml-3" style="color:red;">Day 2: Stumps</span>
 							</div>
 							<div class="col-4 text-end">
-								<span class="team">England</span> <img class="teamimg"src="https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/1200px-Flag_of_the_United_Kingdom.svg.png" style ="border-radius:10px;">
+								<span class="team ">England</span> <img class="teamimg"src="https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/1200px-Flag_of_the_United_Kingdom.svg.png" style ="border-radius:10px;">
 								<br><br>
-								<ul class="mt-sm-2 text-start ms-sm-5 main_players">
+								<ul class=" text-start  main_players">
 									<li>Joe Root(c)</li>
 									<li>Ben Stokes</li>
 									<li>Jofra Archer</li>
@@ -246,7 +294,7 @@
 							<img class="players" src="https://img2.pngio.com/kane-williamson-profile-odi-cricket-records-stats-ipl-career-kane-williamson-png-463_463.png">
 						</div>
 						<div class="col-3 d-flex align-items-center justify-content-center">
-							<img class="players" src="https://tse3.mm.bing.net/th?id=OIP.yrDhYBvKBsmi0BHxyQ4V9QAAAA&pid=Api&P=0&w=300&h=300">
+							<img class="players" src="https://admin.sportswhoop.com/storage/profile/PL20201105172635.png">
 						</div>
 						<div class="col-3 d-flex align-items-center justify-content-center">
 							<img class="players" src="https://tse1.mm.bing.net/th?id=OIP.CT7PPKQ0Qn0apmuO0AMzpQAAAA&pid=Api&P=0&w=300&h=300">
@@ -318,7 +366,7 @@
 						Videos
 					</h3>
 						<%videos.forEach(function(video){%>
-						<iframe style="width:100%" class="mb-5 me-20%" 
+						<iframe style="width:100%" class="mb-3 me-20%" 
 						src="<%=video.url%>" allowfullscreen>
 						</iframe>	
 						<%})%>	
@@ -380,7 +428,34 @@
 			 document.getElementById('img1'+(i+1)).style.display="none";
 			  document.getElementById('img2'+(i+1)).style.display="none";
 					 
-				 }			 
+				 }		
+			 	 if(arr[i].tour.trim()=='Indian Premier League 2021')
+				 {
+					 var  iplobj ={"Kolkata Knight Riders":"KKR","Mumbai Indians":"MI","Delhi Capitals":"DC","Punjab Kings":"PBKS","Chennai Super Kings":"CSK","Rajasthan Royals":"RR","Sunrisers Hyderabad":"SRH","Royal Challengers Bangalore":"RCB"};	
+				 
+			 var img1 = iplobj[arr[i].team1]; var img2 = iplobj[arr[i].team2];	
+if(!img1)
+{
+	var objipl = {"KKR":"Kolkata Knight Riders","MI":"Mumbai Indians","DC":"Delhi Capitals","PBKS":"Punjab Kings","CSK":"Chennai Super Kings","RR":"Rajasthan Royals","SRH":"Sunrisers Hyderabad","RCB":"Royal Challengers Bangalore"};
+	img1= arr[i].team1.toLowerCase();
+	
+}
+			 if(!img2)
+				 {
+					 var objipl = {"KKR":"Kolkata Knight Riders","MI":"Mumbai Indians","DC":"Delhi Capitals","PBKS":"Punjab Kings","CSK":"Chennai Super Kings","RR":"Rajasthan Royals","SRH":"Sunrisers Hyderabad","RCB":"Royal Challengers Bangalore"};
+	img2= arr[i].team2.toLowerCase();
+	
+				 } img1 = img1.toLowerCase();
+					 img2 = img2.toLowerCase();
+					  document.getElementById('img1'+(i+1)).style.display="inline";
+			  document.getElementById('img2'+(i+1)).style.display="inline";
+				 document.getElementById('team1'+(i+1)).innerText = img1.toUpperCase();
+			 document.getElementById('team2'+(i+1)).innerText = img2.toUpperCase();
+		
+					document.getElementById('img1'+(i+1)).setAttribute("src","http://moviebuff.run-ap-south1.goorm.io/"+img1+".png");
+			  document.getElementById('img2'+(i+1)).setAttribute("src","http://moviebuff.run-ap-south1.goorm.io/"+img2+".png");
+			 
+			}
 			}
 	 for(var i =arr.length+1;i<=8;i++)
 		 document.getElementById(i).style.display="none";

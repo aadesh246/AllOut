@@ -7,10 +7,10 @@
 	}
 	@media only screen and (max-width: 600px) {
 		.table{
-			font-size:0.55rem;
+			font-size:0.6rem;
 		}
 		.list-group-item{
-			font-size:0.55rem;
+			font-size:0.6rem;
 		}
 		.ball{
 			height:20px;width:20px;
@@ -67,7 +67,7 @@
 	  <%bats.forEach(function(bat){%>
 	  <tr>
 		  <td><%=bat.rank%></td>
-		  <td><%=bat.name%></td>
+		  <td><a href="/players/search?name=<%=bat.name%>" style="text-decoration:none"><%=bat.name%></a></td>
 		  <td><%=bat.country%></td>
 		  <td><%=bat.points%></td>
 	  </tr>
@@ -88,7 +88,7 @@
 	  <%bowl.forEach(function(bowl){%>
 	  <tr>
 		  <td><%=bowl.rank%></td>
-		  <td><%=bowl.name%></td>
+		  <td><a href="/players/search?name=<%=bowl.name%>" style="text-decoration:none"><%=bowl.name%></a></td>
 		  <td><%=bowl.country%></td>
 		  <td><%=bowl.points%></td>
 	  </tr>
@@ -108,7 +108,7 @@
 	  <%all.forEach(function(all){%>
 	  <tr>
 		  <td><%=all.rank%></td>
-		  <td><%=all.name%></td>
+		  <td><a href="/players/search?name=<%=all.name%>" style="text-decoration:none"><%=all.name%></a></td>
 		  <td><%=all.country%></td>
 		  <td><%=all.points%></td>
 	  </tr>

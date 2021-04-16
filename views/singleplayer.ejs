@@ -6,7 +6,7 @@
 	{
 		font-weight:700;
 	}
-	img {
+	.pic {
 		
 		border-radius:20px;
 		box-shadow: 0 4px 6px 4px rgba(100,100,100,0.5);
@@ -16,6 +16,36 @@
 		border:none;
 		padding:8px;
 		box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+		margin-bottom:10px;
+	}
+	
+	#tbl{
+	    width:100%;
+	}
+	
+	@media only screen and (max-width: 600px) {
+		#batting,#bowling{
+			font-size:0.3rem;
+		}
+		.heading{
+			font-size:0.98rem;
+		}
+		#bio1{
+			font-size:0.8rem;
+		}
+		#tbl{
+			font-size:0.7rem;
+		}
+		.pic{
+			height:150px;width:130px;
+			margin-bottom:20px;
+			margin-left:90px;
+		}
+		input{
+			width:300px;
+			font-size:0.9rem;
+			margin-bottom:10px;
+		}
 	}
 	
 </style>
@@ -23,10 +53,11 @@
 <div class="container">
 	<div class="row">
 	<div class="col-6 mb-2" ><form action="/players/search" method="GET">
-		<input type="text" id="inp" name="name" placeholder="Name of The Player" size="50" class="mt-3">
-		<button type="button submit" class="btn btn-primary">
+		<input type="text" id="inp" name="name" placeholder="Name of The Player"  size="50" class="mt-3">
+		<button type="button submit" id="btn1" class="btn btn-primary">
 			Search
 		</button></form>
+		
 	
 </div>
 
@@ -40,39 +71,40 @@
 	</span>
 	<hr>
 	<div class="row">
-		<div class="col-9">
-			<table class="table table-borderless" style="width:100%">
+		<div class="col-lg-3 ">
+			<img class="pic"  src="<%=data.pic%>">
+		</div>
+		<div class="col-lg-9">
+			<table id="tbl" class="table table-borderless" >
               <tbody>
                 <tr style="font-weight:400">
-                  <th  style="width:20%"colspan="2" >Full Name</th>
+                  <th class="ps-0"  style="width:20%"colspan="2" >Full Name</th>
                   <td><%=data.fullname%></td>
                 </tr>
                 <tr>
-                  <th colspan="2">Born</th>
+                  <th class="ps-0" colspan="2">Born</th>
                   <td><%=data.born%></td>
                 </tr>
                 <tr>
-                  <th colspan="2" >Current Age</th>
+                  <th class="ps-0" colspan="2" >Current Age</th>
                   <td><%=data.age%></td>
                 </tr>
 				 <tr>
-                  <th colspan="2" >Major Teams</th>
+                  <th class="ps-0" colspan="2" >Major Teams</th>
                   <td><%=data.teams%></td>
                 </tr>
 				<tr>
-                  <th colspan="2" >Batting Style</th>
+                  <th class="ps-0" colspan="2" >Batting Style</th>
                   <td><%=data.bat%></td>
                 </tr>
 				 <tr>
-                  <th colspan="2">Bowling Style</th>
+                  <th class="ps-0" colspan="2">Bowling Style</th>
                   <td><%=data.bowl%></td>
                 </tr>
             </tbody>
           </table>
 		</div>
-		<div class="col-3">
-			<img src="<%=data.pic%>">
-		</div>
+		
 	</div>
 		<div class="row mt-5">
 			

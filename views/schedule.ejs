@@ -7,13 +7,16 @@
 	.ball{
 		height:30px;width:30px;
 	}
+	.fa-trophy{
+		font-size:1.5em;
+	}
 	
     @media only screen and (max-width: 600px) {
 		.table{
-			font-size:0.55rem;
+			font-size:0.6rem;
 		}
 		.list-group-item{
-			font-size:0.55rem;
+			font-size:0.6rem;
 		}
 		.ball{
 			height:20px;width:20px;
@@ -91,6 +94,8 @@ matches.forEach(function(match)
       <a class="list-group-item list-group-item-action text-center" id="list-messages-list" data-bs-toggle="list" href="#list-messages" role="tab" aria-controls="messages">T20s &nbsp;
 		  <img class="ball" src="https://www.crickettrainingballs.com.au/wp-content/uploads/2014/07/White-cricket-ball-4-piece.png" style="border-radius:50px;">
 		</a>
+		<a class="list-group-item list-group-item-action text-center" id="list-ipl-list" data-bs-toggle="list" href="#list-ipl" role="tab" aria-controls="ipl">IPL 2021 &nbsp;<i class="fas fa-trophy"></i>
+		</a>
     </div>
   </div>
   <div class="col-lg-8">
@@ -148,6 +153,13 @@ matches.forEach(function(match)
       
   </tbody>
 </table></div>
+		<div class="tab-pane fade" id="list-ipl" role="tabpanel" aria-labelledby="list-ipl-list">  <table class="table">
+  <tbody id="ipl2021">
+    
+	  
+      
+  </tbody>
+</table></div>
     </div>
   </div>
 </div>
@@ -156,6 +168,22 @@ matches.forEach(function(match)
 
 
 
+
+<script>
+	async function getIPL()
+	{
+		const url = "https://moviebuff.run-ap-south1.goorm.io/ipl/api";
+		const response = await fetch("https://moviebuff.run-ap-south1.goorm.io/ipl/api"); 
+        const data = await response.json();
+		$('#ipl2021').text('');
+		data.forEach(function(mat){
+			$('#ipl2021').append("<tr><td>"+mat.match+"</td><td><b>"+mat.team1+"</b>&nbsp;<span>v</span>&nbsp;<b>"+mat.team2+"</b><p class='fst-italic'>"+mat.ground+"</p></td><td>"+mat.date+"<p class='fst-italic'>"+mat.time+"</p></td></tr>");
+		})
+	}
+    getIPL();
+
+
+</script>
 
 
 

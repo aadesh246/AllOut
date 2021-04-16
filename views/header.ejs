@@ -12,7 +12,6 @@
 		<style>
 			
 			
-			
 					.players
 			{
 				border-radius:30px;
@@ -203,6 +202,7 @@
 	
 
 }
+			
 .main::after {
   content: "";
   background: url('https://i.ibb.co/vwmhJpP/download.jpg');
@@ -216,7 +216,22 @@
   right: 0;
   position: absolute;
   z-index: -1;   
-}</style>
+}
+			.logo{
+				height:70px;
+			}
+			
+			
+			@media only screen and (max-width: 600px) {
+				.logo{
+					height:55px;
+				}
+				.name{
+					margin-right:35px;
+				}
+			}
+		
+</style>
 		
 		
 			<link rel="stylesheet" src ="/css/stylesheet.css">
@@ -228,7 +243,7 @@
  
   <script src="//code.jquery.com/jquery-1.12.4.js"></script>
   <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <link rel="preconnect" href="https://fonts.gstatic.com">
+		 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js'></script>
 	
@@ -242,12 +257,12 @@
    box-sizing: border-box;
 }</style>
 		
-		<nav  class="navbar navbar-expand-lg navbar-dark mb-3 " style="background: #085078;  /* fallback for old browsers */
+		<nav  id='mynav'class="navbar navbar-expand-lg navbar-dark mb-3 " style="background: #085078;  /* fallback for old browsers */
 background: -webkit-linear-gradient(to right, #85D8CE, #085078);  /* Chrome 10-25, Safari 5.1-6 */
 background: linear-gradient(to right, #85D8CE, #085078); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 ">
 			<div class="container">
-				<a class="navbar-link" href="/"><img src = "/mysc.png" style="height:80px;border-radius:50px;"  class=" me-0 me-sm-1"></a> <a href="/" style="text-decoration:none"><span style=" font-size:35px; font-family:chewy;color:white">cricdesi</span></a>
+				<a class="navbar-link" href="/"><img src = "/mysc.png" style="border-radius:50px;"  class="logo"></a>&nbsp; <a href="/" style="text-decoration:none"><span class="name" style=" font-size:35px; font-family:chewy;color:white">cricdesi</span></a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -256,7 +271,7 @@ background: linear-gradient(to right, #85D8CE, #085078); /* W3C, IE 10+/ Edge, F
 		  
 		  &nbsp;&nbsp;
 		  
-		<li class="nav-item ms-sm-5">
+		<li class="nav-item ms-lg-5">
           <a class="nav-link active" aria-current="page" id="1" href="/featured">Featured</a>
         </li>
         <li class="nav-item ">

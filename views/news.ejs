@@ -46,16 +46,35 @@
 :-ms-input-placeholder {  
    text-align: center; 
 }
-	  @media only screen and (min-width: 700px) {
+	  
 		  .newsimg{
 			  width:100%;
 		  }
+	  @media only screen and (min-width: 700px) and (max-width: 1000px) {
+		  .newsimg{
+			 width:115%; height:120px; margin-bottom:5px;
+		  }
+		  
+		  .newsdata{
+			  font-size:0.65rem;
+			  margin-left:10px;
+		  }
+		  .page12{
+			  width:70%;
+			  
+			  overflow-x:scroll;
+			  text-align:center;
+			  
+		  } 
 	  }
 		  
 	  
 	  @media only screen and (max-width: 600px) {
 		  .newsimg{
-			 width:100%; height:100px; margin-bottom:5px;
+			 width:90%; height:120px; margin-bottom:5px;
+		  }
+		  .news{
+			 width:80%; 
 		  }
 		  .newsdata{
 			  font-size:0.65rem;
@@ -85,12 +104,12 @@
 	   <hr>
 	   <div class ="row" >
 		   <%data.forEach(function(news){%>
-		   <div class="col-sm-4 col-ll-4  mb-2 me-1" >
+		   <div class="col-sm-4 col-md-4  mb-2 me-1" >
 			   
 			   <img class="newsimg"  src ="<%=news.img%>" style =" border-radius:20px; box-shadow: 10px 10px 5px #888888;">
 			   
 		   </div>
-		   <div class ="col-lg-7 col-sm-9  mb-2 newsdata" >
+		   <div class ="col-md-7 col-sm-8  mb-2 newsdata" >
 			   <b><a href ="/single-news/<%=news.href%>" style ="text-decoration:none">
 				   <%=news.title%></a>
 			   </b>

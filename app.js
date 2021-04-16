@@ -17,7 +17,7 @@ var Video = require("./models/video.js"),
 	Meme = require("./models/meme.js");
 
 const x="mongodb+srv://aadesh246:aadesh123@cluster0.1lhwg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
-	
+var  iplobj ={"Kolkata Knight Riders":"KKR","Mumbai Indians":"MI","Delhi Capitals":"DC","Punjab Kings":"PBKS","Chennai Super Kings":"CSK","Rajasthan Royals":"RR","Sunrisers Hyderabad":"SRH","Royal Challengers Bangalore":"RCB"};	
 mongoose.connect(x, {
 	useNewUrlParser: true,
 	useCreateIndex: true
@@ -38,57 +38,6 @@ app.use(async function (req, res, next) {
 	res.locals.success = req.flash("success");
 	next();
 });
-// app.get("/",async function(req,res)
-// 	   {
-// 	const options = {
-//     token: "E51F2E3FFD49B3B7FC9E7590C4383900",
-//     url: "https://www.oddsportal.com/matches/cricket/20210408/",
-// 	javascript_enabled: true,
-// };
-
-// axios.post("https://api.scraperbox.com/scrape", options)
-// .then(response => {
-    
-// 	var x = response.data;
-// 	var $ = cheerio.load(x);
-	
-// 	var data =[];var pre;
-// 	for(var i =1;i<20 ;i++)
-// 		{
-// 			var z = $('#table-matches > table>tbody>tr:nth-child('+i+')').html();if(z==null)break;
-// 		 if(z!=null&&z.includes('<th'))
-// 			 {
-// 			 pre = $('#table-matches > table > tbody > tr:nth-child('+i+') > th.first2.tl').text();continue;}
-// 			var time = $('#table-matches > table>tbody>tr:nth-child('+i+')>td.table-time').text();
-// 			var team = $('#table-matches > table>tbody>tr:nth-child('+i+')>td.name>a').text();
-// 			var resu = team.split('-');
-// 			var team1 = resu[0],team2=resu[1];
-// 			var desc = pre;
-// 			var status = $('#table-matches > table>tbody>tr:nth-child('+i+')>td.name>span').attr('onmouseover');var a=0, b=0;
-// 			for(var j =0; j<status.length;j++)
-// 				{
-// 					if(a==0&&status[j]=='(')a=j;
-// 					if(b==0&&a!=0&&status[j]==','){b=j;break;}
-// 				}
-// 			status = status.substr(a+2,b-a-3);
-// 			var score = $('#table-matches > table>tbody>tr:nth-child('+i+')>td.table-score').text();
-// 			var odds_1 = $('#table-matches > table>tbody>tr:nth-child('+i+')>td:nth-child(4)>a').text();
-// 			var odds_2 = $('#table-matches > table>tbody>tr:nth-child('+i+')>td:nth-child(5)>a').text();
-			
-// 			resu = score.split(':');
-// 			var team1sc = resu[0];
-// 			var team2sc = resu[1];
-// 			data.push({time:time,team1:team1,team2:team2,team1score:team1sc,team2sc:team2sc,desc:desc,status:status,desc:desc,team1odds:odds_1,team2odds:odds_2});
-			
-// 		}
-// 	res.send({data});
-	
-	
-	
-// }).catch(error => {
-//     console.error( error||error.response.data.errors );
-// });
-// })
 app.get("/",async function(req,res){
 Video.find({}).limit(2).exec(function(err,videos){
 Meme.find({}).limit(3).exec(async function(err,memes)
@@ -653,6 +602,7 @@ var title =$(" h1").text();
 app.get("/players",function(req,res){
 	res.render("players.ejs",{ans:true});
 })
+
 app.get("/players/search",async function(req,res)
 	   {
 	var x = req.query.name;
@@ -706,7 +656,8 @@ app.get("/players/single/:id",async function(req,res){
 
 	var y=$(' div.playerpage-content > div:nth-child(3) > div > div:nth-child(2) > div > table').html();
 	var bio1=$(' div > div.more-content-gradient-content').html()
-	
+  var t = bio1.lastIndexOf("<p>");
+	bio1=bio1.substr(0,t);
 	data.push({head:head,country:country,fullname:fullname,born:born,age:age,teams:teams,bat:bat,bowl:bowl,pic:pic,bio1:bio1,z:z,y:y});
 	res.render("singleplayer.ejs",{data:data});
 	
@@ -784,6 +735,12 @@ data.push({format:format,match:match,date:date,result:result1,image1:name1,team1
 			
 			
 		}
+	var ipldata = await request("https://moviebuff.run-ap-south1.goorm.io/ipl/results/api");
+	ipldata = JSON.parse(ipldata);
+	ipldata.forEach(function(match)
+				   {
+		data.push(match);
+	})
 	res.render("live.ejs",{data:data});
 })
 
@@ -1126,28 +1083,86 @@ app.get("/score1",async function(req,res)
     
 		var score2 = team2t.replace(team2,'').trim();
 		var status = $(" div > div:nth-child(7) > a:nth-child("+i+") > div > div > div > span:nth-child(2)").text();
-		if(team1.length>15)
-				{ 
-					var z = team1.split(" ");var y="";
-					for(var a1 =0; a1<z.length;a1++)
-					y+=z[a1][0];
-					team1=y;
-				}
-		if(team2.length>15)
-				{
-					var z = team2.split(" ");var y="";
-					for(var a1 =0; a1<z.length;a1++)
-					y+=z[a1][0];
-					team2=y;
-				}
 	  	data.push({tour:tour,match:match,team1:team1,score1:score1,team2:team2,score2:score2,status:status});
 		
 	}	
-		res.send({data});
-	
-	
-
+		res.send({data});	
 })
+
+app.get("/ipl/results/api",async function(req,res)
+	   {
+	var data =[]; var url,response,$;
+	 url = "https://www.espncricinfo.com/series/ipl-2021-1249214/match-results";
+	 response = await request({
+		uri:url,
+		headers:{"accept": "application/json, text/plain, */*",
+"accept-encoding": "gzip, deflate, br",
+"accept-language": "en-US,en;q=0.8"},
+		gzip:true
+		 
+	});
+	$ = cheerio.load(response);
+	for(var i =1;;i++ ){
+	var x = $('#main-container > div:nth-child(1) > div.series-results-page-wrapper > div > div > div.col-16.col-md-16.col-lg-12.main-content-x > div:nth-child(1) > div > div > div:nth-child(2) > div.card.content-block.league-scores-container > div > div > div:nth-child('+i+') > div > a > div > div').text();
+	if(!x) break;
+	if(x)
+		{
+			var team1 = $('#main-container > div:nth-child(1) > div.series-results-page-wrapper > div > div > div.col-16.col-md-16.col-lg-12.main-content-x > div:nth-child(1) > div > div > div:nth-child(2) > div.card.content-block.league-scores-container > div > div > div:nth-child('+i+') > div > a > div > div > div.teams > div:nth-child(1) > div.name-detail').text();
+			var score1 =$('#main-container > div:nth-child(1) > div.series-results-page-wrapper > div > div > div.col-16.col-md-16.col-lg-12.main-content-x > div:nth-child(1) > div > div > div:nth-child(2) > div.card.content-block.league-scores-container > div > div > div:nth-child('+i+') > div > a > div > div > div.teams > div:nth-child(1) > div.score-detail>span.score').text();
+			var team2 = $('#main-container > div:nth-child(1) > div.series-results-page-wrapper > div > div > div.col-16.col-md-16.col-lg-12.main-content-x > div:nth-child(1) > div > div > div:nth-child(2) > div.card.content-block.league-scores-container > div > div > div:nth-child('+i+') > div > a > div > div > div.teams > div:nth-child(2) > div.name-detail').text();
+			var score2 =$('#main-container > div:nth-child(1) > div.series-results-page-wrapper > div > div > div.col-16.col-md-16.col-lg-12.main-content-x > div:nth-child(1) > div > div > div:nth-child(2) > div.card.content-block.league-scores-container > div > div > div:nth-child('+i+') > div > a > div > div > div.teams > div:nth-child(2) > div.score-detail>span.score').text();
+			var result = $('#main-container > div:nth-child(1) > div.series-results-page-wrapper > div > div > div.col-16.col-md-16.col-lg-12.main-content-x > div:nth-child(1) > div > div > div:nth-child(2) > div.card.content-block.league-scores-container > div > div > div:nth-child('+i+') > div > a > div > div > div.status-text').text();
+		var desc=$('	#main-container > div:nth-child(1) > div.series-results-page-wrapper > div > div > div.col-16.col-md-16.col-lg-12.main-content-x > div:nth-child(1) > div > div > div:nth-child(2) > div.card.content-block.league-scores-container > div > div > div:nth-child('+i+') > div > a > div > div > div.description').text();
+		var resu = desc.split(',');
+		var match = resu[0];
+			var date = resu[2];
+			var loc = resu[1].trim();
+		var img1 = iplobj.team1; var img2 = iplobj.team2;	
+if(!img1)
+{
+	var objipl = {"KKR":"Kolkata Knight Riders","MI":"Mumbai Indians","DC":"Delhi Capitals","PBKS":"Punjab Kings","CSK":"Chennai Super Kings","RR":"Rajasthan Royals","SRH":"Sunrisers Hyderabad","RCB":"Royal Challengers Bangalore"};
+	img1= team1.toLowerCase();img2= team2.toLowerCase();
+	team1 =  objipl[team1],team2=objipl[team2];
+}data.push({format:"IPL",match:match,date:date,result:result,image1:img1,team1:team1,score1:score1,image2:img2,team2:team2,score2:score2,stadium:loc});
+
+		}
+			}
+		res.send(data);
+})
+app.get("/ipl/api",async function(req,res){
+	var data =[]; var url,response,$;
+	 url = "https://www.espncricinfo.com/series/ipl-2021-1249214/match-schedule-fixtures";
+	 response = await request({
+		uri:url,
+		headers:{"accept": "application/json, text/plain, */*",
+"accept-encoding": "gzip, deflate, br",
+"accept-language": "en-US,en;q=0.8"},
+		gzip:true
+		 
+	});
+	$ = cheerio.load(response);
+	for(var i=1;;i++)
+	{
+	var x=$("#main-container > div:nth-child(1) > div.series-results-page-wrapper > div > div > div.col-16.col-md-16.col-lg-12.main-content-x > div:nth-child(1) > div > div > div:nth-child(2) > div.card.content-block.league-scores-container > div > div > div:nth-child("+i+")").text();
+	if(!x)
+		break;
+	var y=$("#main-container > div:nth-child(1) > div.series-results-page-wrapper > div > div > div.col-16.col-md-16.col-lg-12.main-content-x > div:nth-child(1) > div > div > div:nth-child(2) > div.card.content-block.league-scores-container > div > div > div:nth-child("+i+") > div > a > div > div > div.status > span").text().trim().split(",");
+	var date=y[0];var time=y[1];
+	if(time==" 02:00 pm")
+		time="07:30 pm";
+	if(time==" 10:00 am")
+		time="03:30 pm";
+	var team1=$("#main-container > div:nth-child(1) > div.series-results-page-wrapper > div > div > div.col-16.col-md-16.col-lg-12.main-content-x > div:nth-child(1) > div > div > div:nth-child(2) > div.card.content-block.league-scores-container > div > div > div:nth-child("+i+") > div > a > div > div > div.teams > div:nth-child(1) > div > p").text().trim();
+	var team2=$("#main-container > div:nth-child(1) > div.series-results-page-wrapper > div > div > div.col-16.col-md-16.col-lg-12.main-content-x > div:nth-child(1) > div > div > div:nth-child(2) > div.card.content-block.league-scores-container > div > div > div:nth-child("+i+") > div > a > div > div > div.teams > div:nth-child(2) > div > p").text().trim();
+	var z =$("#main-container > div:nth-child(1) > div.series-results-page-wrapper > div > div > div.col-16.col-md-16.col-lg-12.main-content-x > div:nth-child(1) > div > div > div:nth-child(2) > div.card.content-block.league-scores-container > div > div > div:nth-child("+i+") > div > a > div > div > div.description").text().trim().split(",");
+		
+	var match=z[0];var ground=z[1];
+		
+		data.push({date:date,time:time,team1:team1,team2:team2,match:match,ground:ground});
+	}
+	res.send(data);
+})
+
 app.listen(3000,function()
 		  {
 	console.log("Server has started");
