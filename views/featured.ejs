@@ -121,8 +121,8 @@
 <script>
 	async function getMatch()
 	{
-		const url = "https://moviebuff.run-ap-south1.goorm.io/matches/api";
-		const response = await fetch("https://moviebuff.run-ap-south1.goorm.io/matches/api"); 
+		
+		const response = await fetch("/matches/api"); 
         const data = await response.json();
 		$('#match').text(''); data.reverse();
 		data.forEach(function(mat){

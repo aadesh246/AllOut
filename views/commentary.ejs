@@ -147,8 +147,8 @@
    async function getISS()
 	{
 		var id = <%- JSON.stringify(id) %>;
-		const url = "https://moviebuff.run-ap-south1.goorm.io/match/"+id+"/api";
-		 const response = await fetch("https://moviebuff.run-ap-south1.goorm.io/match/"+id+"/api");  
+	
+		 const response = await fetch("/match/"+id+"/api");  
         const data = await response.json();
 		document.getElementById('title').innerText=data.title;
 		document.getElementById('location').innerText=data.location;

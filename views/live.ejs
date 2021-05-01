@@ -241,7 +241,7 @@ background: linear-gradient(to right, #85D8CE, #085078);
 <script> 
    
  async function getISS() {
-        const response = await fetch("https://moviebuff.run-ap-south1.goorm.io/score1");  
+        const response = await fetch("/score1");  
         const data = await response.json();
 	 var arr = data.data;
 	    for(var i =0; i<arr.length;i++)
@@ -283,8 +283,8 @@ background: linear-gradient(to right, #85D8CE, #085078);
 			 name2 = name2.toLowerCase();
 			 if(name1=="afg"||name1=='aus'||name1=="ind"||name1=="ban"||name1=='eng'||name1=="sl"||name1=='rsa'|name1=='ire'||name1=='pak'||name1=='wi'||name1=='sl'||name1=='zim'||name1=='nz')
 				 {
-			 document.getElementById('img1'+(i+1)).setAttribute("src","http://moviebuff.run-ap-south1.goorm.io/"+name1+".png");
-			  document.getElementById('img2'+(i+1)).setAttribute("src","http://moviebuff.run-ap-south1.goorm.io/"+name2+".png");
+			 document.getElementById('img1'+(i+1)).setAttribute("src","/"+name1+".png");
+			  document.getElementById('img2'+(i+1)).setAttribute("src","/"+name2+".png");
 				 }
 				 else{
 			 document.getElementById('img1'+(i+1)).style.display="none";
@@ -314,8 +314,8 @@ if(!img1)
 				 document.getElementById('team1'+(i+1)).innerText = img1.toUpperCase();
 			 document.getElementById('team2'+(i+1)).innerText = img2.toUpperCase();
 		
-					document.getElementById('img1'+(i+1)).setAttribute("src","http://moviebuff.run-ap-south1.goorm.io/"+img1+".png");
-			  document.getElementById('img2'+(i+1)).setAttribute("src","http://moviebuff.run-ap-south1.goorm.io/"+img2+".png");
+					document.getElementById('img1'+(i+1)).setAttribute("src","/"+img1+".png");
+			  document.getElementById('img2'+(i+1)).setAttribute("src","/"+img2+".png");
 			 
 			}}
 	 for(var i =arr.length+1;i<=8;i++)
