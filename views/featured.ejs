@@ -124,7 +124,7 @@
 		const url = "https://moviebuff.run-ap-south1.goorm.io/matches/api";
 		const response = await fetch("https://moviebuff.run-ap-south1.goorm.io/matches/api"); 
         const data = await response.json();
-		$('#match').text('');
+		$('#match').text(''); data.reverse();
 		data.forEach(function(mat){
 			var x;var y="",z="";
 			if(mat.type==1)

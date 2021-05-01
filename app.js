@@ -1,4 +1,5 @@
 var express = require("express"),
+	cors = require('cors'),
 	app = express(),
 	request = require("request-promise"),
 	bodyParser= require("body-parser"),
@@ -25,7 +26,7 @@ mongoose.connect(x, {
 	console.log("Connected")
 });
 app.use(bodyParser.urlencoded({extended: true}));
-
+app.use(cors());
 app.use(express.static(__dirname + "/public"));
 app.use(flash());
 app.use(require("express-session")({
@@ -53,7 +54,7 @@ Meme.find({}).limit(3).exec(async function(err,memes)
 		gzip:true
 	});
 	var $ = cheerio.load(response);
-	for(var i =1;i<10;i++)
+	for(var i =1;i<15;i++)
 		{
 			var title = $("li:nth-child("+i+") > figure > figcaption > h3>a").attr("title");
 			
@@ -345,6 +346,17 @@ app.get("/matches/api",function(req,res){
 		res.send(match);
 	})
 })
+
+app.post("/match/:id/comment",function(req,res)
+	   {
+	Match.findById(req.params.id,async function(err,match)
+				  {
+		var ball = await Ball.create({isComment:true,comment:req.body.comment});
+		match.commentary.push(ball);
+		var z = await match.save();
+		res.redirect("/match/"+match._id+"/comment");
+	})
+})
 app.get("/featured",function(req,res){
 	res.render("featured.ejs");
 })
@@ -369,7 +381,7 @@ app.post("/addMatch",function(req,res)
 			   {
 		Team.create({name:req.body.team2, image:req.body.team2img},function(err,team2)
 				   {
-			Match.create({team1:team1,team2:team2,type:req.body.type,title:req.body.title,image:req.body.matchimg,date:req.body.date,location:req.body.location},function(err,match)
+			var x ='Yet To Begin'; Match.create({team1:team1,team2:team2,type:req.body.type,title:req.body.title,image:req.body.matchimg,date:req.body.date,location:req.body.location,status:x},function(err,match)
 						{
 			  res.redirect("/match/"+match._id);
 			})
@@ -1161,6 +1173,11 @@ app.get("/ipl/api",async function(req,res){
 		data.push({date:date,time:time,team1:team1,team2:team2,match:match,ground:ground});
 	}
 	res.send(data);
+})
+	
+app.get("/match/:id/comment",function(req,res){
+	Match.findById(req.params.id,function(err,match){
+	res.render("addComment.ejs",{match:match});})
 })
 
 app.listen(3000,function()

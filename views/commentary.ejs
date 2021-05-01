@@ -158,6 +158,8 @@
 			$("#team2").text(data.team2.name);
 			$("#team1img").attr("src",data.team1.image);
 			$("#team2img").attr("src",data.team2.image);
+			
+			$('#main').text("Match has not started yet....Stay Tuned!!");
 		}
 		else{
 			$("#team1").text(data.inning[0].team); var x=1;
@@ -213,7 +215,7 @@
 									
 							$('#main').append("<div class='col-1 py-2' style='background:#0033cc;color:white;'><span></span></div><div class='col py-2' style='background:#0033cc;color:white;'><span class='lastover'>Last Over: "+ball.overRuns+" runs</span></div><div class='col py-2'  style='background:#0033cc;color:white;' ><span class='present'>"+data.inning[data.inning.length-1].team+" - "+ball.overScore+"</span></div><hr class='m-0' style='color:#bfbfbf;'>");	 rns =0;    
 								   }
-								else{rns+=ball.runs;
+								else{rns+=ball.runs;if(ball.desc[ball.desc.length-1]=='+')ball.desc = ball.desc.substr(0,ball.desc.length-1);
 								if(ball.desc.includes("W"))cl = 'wicket'; else if(ball.runs==6)cl= 'six'; else if(ball.runs==4)cl='four'; else cl='run'; var runs;if(cl=='wicket')runs ='OUT';else if(ball.runs==1)runs = ball.runs +' run';else runs = ball.runs+' runs';
 			$('#main').append("<div class='col-1 py-3 d-flex justify-content-center align-items-center'> <span class='over'>"+ball.over+"</span></div><div class='col-1 my-4 mx-2 d-flex justify-content-center align-items-center "+ cl +"'><span class=' runs'>"+ball.desc+"</span></div><div class='col py-3'><span class='result text-muted'>"+ball.bowler+" to "+ball.batsman+", "+runs+"</span>	<div><span class='description'>"+ball.comment+"</span></div></div><hr class='m-0' style='color:#bfbfbf;'>");
 		}
